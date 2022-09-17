@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>DP 刷题</title>
+    <url>/Jmins0.github.io/2022/07/29/DP/</url>
+    <content><![CDATA[<h1 id="01背包"><a href="#01背包" class="headerlink" title="01背包"></a>01背包</h1><h2 id="Task-Computing"><a href="#Task-Computing" class="headerlink" title="Task Computing"></a><strong>Task Computing</strong></h2><span id="more"></span>
+
+<p><a href="https://ac.nowcoder.com/acm/contest/33189/A">题目连接</a></p>
+<p>As it says, Time is Money, Efficiency is Life. A client has a computing task waiting for uploading to the cloud servers. However, due to the resource limits and many other tasks, a task usually cannot be worked on a single server but multiple servers, one after another. You, as an employee of a cloud server provider who specializes in task allocation, need to select several servers from a limited number of cloud servers to perform calculations. We know that even the same servers will perform differently in different environments.</p>
+<p>There are nn cloud servers available in the vicinity of the client’s region numbered from $1$ to $n$. The ii-th cloud server has two parameters: $w_i$ and $p_i$, which indicate the computing power and transmission efficiency of that server, respectively. The supervisor requires that each task must be computed by exactly $m$ of these servers. The client’s computational task is not parallelizable, so you must sequence the work of the $m$ servers to maximize the total computational efficiency. We define the total computational efficiency as follows:<br>$\sum_{i&#x3D;1}^m {w_i} \prod_{j&#x3D;0}^{i-1} {p_i}$</p>
+<p><strong>输入描述</strong></p>
+<p>The first line contains two integers $n$,$m$ ($1 \le n \le 10_{5}$ , $1 \le m \le {min(n,20)}$) denoting the number of cloud servers and servers that you have to select.</p>
+<p>The second line contains $n$ integers $w_1$,$w_2$,$\ldots$, $w_n$,($1 \le {w_i} \le 10_{9}$), denoting the servers’ computing power.</p>
+<p>The third line contains $n$ integers $q_1$,$q_2$,$\ldots$, $q_n$ ($8000 \le q_i \le 12000$)<br>where $p_i$ &#x3D;$\frac {q_i}{10000}$ denotes the ii-th server’s transmission efficiency.</p>
+<p><strong>输出描述</strong></p>
+<p>Output a float number denoting the maximal total computational efficiency. Your answer is considered correct if the relative or absolute error between yours and the standard solution is not greater than $10^{-6}$</p>
+<p><strong>样例</strong>1</p>
+<p><strong>输入</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">5 2</span><br><span class="line">1 2 3 4 5 </span><br><span class="line">12000 11000 10000 9000 8000</span><br></pre></td></tr></table></figure>
+<p><strong>输出</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">8.500000000</span><br></pre></td></tr></table></figure>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p> <strong>1.首先，每个机器选取的先后顺序会影响其价值，先对其进行排序。</strong></p>
+<blockquote>
+<p>设两个机器分别为 $x,y$,</p>
+<p>当$x$在前，$y$在后的价值为 : $w_x * p_k + w_y * p_x * p_k$</p>
+<p>当$y$在前，$y$在后的价值为 : $w_y * p_k + w_x * p_y * p_k$</p>
+<p>令 式1&gt;式2 得 : </p>
+<p>$w_x + w_y * p_x &gt; w_y + w_x * p_y$，按照该式子排序</p>
+</blockquote>
+<p><strong>2.排序后，不论从前到后还是从后到前，均为一个有顺序的子序列，所以前后方向不重要。</strong></p>
+<p><strong>3.越靠后面选择的，$p$的影响更大。</strong></p>
+<blockquote>
+<p>设三个设备$1,2,3$，则价值为</p>
+<p>$w_1 + w_2 * p_1 + w_3 * p_1 * p_2 &#x3D; p_1 * (w_2 + w_3 * p_2) + w_1$</p>
+<p>以此类推<br>因此从最后选的开始更新，价值越小，排序越靠后，越先更新，即$(n~1)$</p>
+</blockquote>
+<p><strong>4.dp方程 $f[i][k]$ 表示考虑到 第 i 个， 装了 m 个的最大值</strong></p>
+<blockquote>
+<p>转移方程: $f[i][k]&#x3D;max(f[i][k],f[i+1][k-1] * p[i] + w[i])$</p>
+</blockquote>
+<h3 id="CODE"><a href="#CODE" class="headerlink" title="CODE"></a>CODE</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MAXN=<span class="number">1e5</span>+<span class="number">10</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> INF=<span class="number">0x3f3f3f</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">double</span> w,p;</span><br><span class="line">&#125;no[MAXN];</span><br><span class="line"><span class="type">double</span> f[MAXN][<span class="number">30</span>],P[<span class="number">30</span>][MAXN];</span><br><span class="line"><span class="type">bool</span> <span class="title function_">cmp</span><span class="params">(node x,node y)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> (x.w+x.p*y.w)&gt;(y.w+x.w*y.p);</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123; </span><br><span class="line">    <span class="type">int</span> n,m;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)<span class="built_in">cin</span>&gt;&gt;no[i].w;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">cin</span>&gt;&gt;no[i].p,no[i].p/=<span class="number">10000</span>;</span><br><span class="line">    sort(no+<span class="number">1</span>,no+n+<span class="number">1</span>,cmp);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=n;i&gt;=<span class="number">1</span>;i--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> k=<span class="number">1</span>;k&lt;=m;k++)</span><br><span class="line">        &#123;</span><br><span class="line">            f[i][k]=max(f[i][k],no[i].w+f[i+<span class="number">1</span>][k<span class="number">-1</span>]*no[i].p);</span><br><span class="line">        &#125;   </span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> k=<span class="number">1</span>;k&lt;=m;k++) f[i][k]=max(f[i][k],f[i+<span class="number">1</span>][k]);       </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lf&quot;</span>,f[<span class="number">1</span>][m]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="线性DP"><a href="#线性DP" class="headerlink" title="线性DP"></a>线性DP</h1><h2 id="P1681-最大正方形-二"><a href="#P1681-最大正方形-二" class="headerlink" title="P1681 最大正方形-二"></a>P1681 最大正方形-二</h2><p><strong><a href="https://www.luogu.com.cn/problem/P1681">题目连接</a></strong></p>
+<h3 id="CODE-1"><a href="#CODE-1" class="headerlink" title="CODE"></a>CODE</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MAXN=<span class="number">2e3</span>+<span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> f[MAXN][MAXN][<span class="number">2</span>],a[MAXN][MAXN]; </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> n,m;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=m;j++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a[i][j]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">int</span> ans=<span class="number">1</span>;</span><br><span class="line">	<span class="type">int</span> p=<span class="built_in">min</span>(n,m);</span><br><span class="line">	<span class="type">int</span> t=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> L=<span class="number">2</span>;L&lt;=p;L++)</span><br><span class="line">	&#123;</span><br><span class="line">		t=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=n-L+<span class="number">1</span>;i&gt;=<span class="number">1</span>;i--)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> j=m-L+<span class="number">1</span>;j&gt;=<span class="number">1</span>;j--)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">if</span>(L==<span class="number">2</span>)</span><br><span class="line">				&#123;</span><br><span class="line">					<span class="keyword">if</span>((a[i][j]==<span class="number">0</span>&amp;&amp;a[i+<span class="number">1</span>][j+<span class="number">1</span>]==<span class="number">0</span>&amp;&amp;a[i+<span class="number">1</span>][j]==<span class="number">1</span>&amp;&amp;a[i][j+<span class="number">1</span>]==<span class="number">1</span>)||(a[i][j]==<span class="number">1</span>&amp;&amp;a[i+<span class="number">1</span>][j+<span class="number">1</span>]==<span class="number">1</span>&amp;&amp;a[i+<span class="number">1</span>][j]==<span class="number">0</span>&amp;&amp;a[i][j+<span class="number">1</span>]==<span class="number">0</span>))</span><br><span class="line">					&#123;</span><br><span class="line">						f[i][j][L%<span class="number">2</span>]=<span class="number">1</span>;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">else</span></span><br><span class="line">				f[i][j][L%<span class="number">2</span>]=f[i][j][(L<span class="number">-1</span>)%<span class="number">2</span>]&amp;&amp;f[i+<span class="number">1</span>][j][(L<span class="number">-1</span>)%<span class="number">2</span>]&amp;&amp;f[i][j+<span class="number">1</span>][(L<span class="number">-1</span>)%<span class="number">2</span>]&amp;&amp;f[i+<span class="number">1</span>][j+<span class="number">1</span>][(L<span class="number">-1</span>)%<span class="number">2</span>];</span><br><span class="line">				<span class="keyword">if</span>(f[i][j][L%<span class="number">2</span>])</span><br><span class="line">				&#123;ans=L;t=<span class="number">1</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="comment">//cout&lt;&lt;L&lt;&lt;&quot; &quot;&lt;&lt;ans&lt;&lt;endl;</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125; </span><br><span class="line">		<span class="keyword">if</span>(t!=<span class="number">1</span>) L=p+<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;ans;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="数位DP"><a href="#数位DP" class="headerlink" title="数位DP"></a>数位DP</h1><h2 id="数字计数问题"><a href="#数字计数问题" class="headerlink" title="数字计数问题"></a>数字计数问题</h2><p><strong><a href="https://www.luogu.com.cn/problem/P2602">题目连接</a></strong></p>
+<h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3><p>设计一个 $Count$ 函数，用来统计$ [1,num] $中，$x$ 的个数，</p>
+<p>则每一个数码的答案就是 $Count(b,x)- Count(a-1,x)$，类似于前缀和的想法。</p>
+<p><strong>其他函数解释</strong></p>
+<p>$pow10(x)$ ，用来求 $10^x$。</p>
+<p>$get(q,L,R)$, 用来求某个数中，处在$[L,R]$位置上的数值为多少。</p>
+<p><strong>Count函数</strong></p>
+<p>假设求数字 $abcdefg$ 中 $d$ 位置 $x$ 的个数（先不考虑$0$）</p>
+<p>分两种情况：</p>
+<ol>
+<li><p>前面选取 $[000,abc-1]$（$0$ 则是 $[001,abc-1]$），后面可以随便选取，即$[000,efg]$，总数：$ans+&#x3D;abc*1000$。</p>
+</li>
+<li><p>当前面选取 $abc$，则要继续分类讨论 $d$ 与 $x$ 的大小关系</p>
+<p>1). 当 $d&lt;x$ 时，数字不在范围内，不符合要求</p>
+<p>2). 当 $d&#x3D;x$ 时，后面可取 $[000,efg]$，即 $ans+&#x3D;efg+1$</p>
+<p>3). 当 $d&gt;x$ 是，后面可取 $[000,999]$，即  $ans+&#x3D;1000$</p>
+</li>
+</ol>
+<p>最后，对于每一个数字，循环一下每一个位置，就是的 $Count$ 的值了。</p>
+<p><strong>记得开 $long long$ ! ! !</strong></p>
+<h3 id="CODE-2"><a href="#CODE-2" class="headerlink" title="CODE"></a>CODE</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="function">ll <span class="title">pow10</span><span class="params">(<span class="type">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//if(x&lt;0) return 1;</span></span><br><span class="line">	ll res=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(x--) </span><br><span class="line">	&#123;</span><br><span class="line">		res*=<span class="number">10</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">get</span><span class="params">(vector&lt;<span class="type">int</span>&gt; q,<span class="type">int</span> l,<span class="type">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	ll res=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=r;i&gt;=l;i--)</span><br><span class="line">	&#123;</span><br><span class="line">		res=res*<span class="number">10</span>+q[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">Count</span><span class="params">(ll p,<span class="type">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(p==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	vector&lt;<span class="type">int</span>&gt; num;</span><br><span class="line">	<span class="keyword">while</span>(p)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">int</span> t=p%<span class="number">10</span>;</span><br><span class="line">		num.<span class="built_in">push_back</span>(t);</span><br><span class="line">		p/=<span class="number">10</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">int</span> n=num.<span class="built_in">size</span>();</span><br><span class="line">	ll ans=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(x==<span class="number">0</span>&amp;&amp;i==n<span class="number">-1</span>) <span class="keyword">continue</span>;<span class="comment">//0不能是第一个数 </span></span><br><span class="line">		<span class="keyword">if</span>(x!=<span class="number">0</span>&amp;&amp;(i&lt;n<span class="number">-1</span>)) ans+=<span class="built_in">pow10</span>(i)*<span class="built_in">get</span>(num,i+<span class="number">1</span>,n<span class="number">-1</span>);<span class="comment">//情况1</span></span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(i&lt;n<span class="number">-1</span>) ans+=<span class="built_in">pow10</span>(i)*(<span class="built_in">get</span>(num,i+<span class="number">1</span>,n<span class="number">-1</span>)<span class="number">-1</span>);情况<span class="number">1</span>（<span class="number">0</span>）</span><br><span class="line">		<span class="keyword">if</span>(num[i]&gt;x) ans+=<span class="built_in">pow10</span>(i);<span class="comment">//情况2.3</span></span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(num[i]==x) ans+=<span class="built_in">get</span>(num,<span class="number">0</span>,i<span class="number">-1</span>)+<span class="number">1</span>; <span class="comment">//情况2.2</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	ll a,b;</span><br><span class="line">	cin&gt;&gt;a&gt;&gt;b;</span><br><span class="line">	<span class="keyword">if</span>(a&gt;b) <span class="built_in">swap</span>(a,b); </span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;=<span class="number">9</span>;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		ll suma=<span class="built_in">Count</span>(a<span class="number">-1</span>,i);</span><br><span class="line">		ll sumb=<span class="built_in">Count</span>(b,i);</span><br><span class="line">		cout&lt;&lt;sumb-suma&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Hello Blog!</title>
+    <url>/Jmins0.github.io/2022/07/28/Hello_Blog/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><p><em>斜体</em></p>
+<p><strong>粗体文字</strong></p>
+<p><em><strong>粗斜体</strong></em></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;Hello Blog!&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>Javascript NodeJS</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>hexo Blog搭建</title>
+    <url>/Jmins0.github.io/2022/09/15/blog_learn/</url>
+    <content><![CDATA[<h3 id="hexo基本操作"><a href="#hexo基本操作" class="headerlink" title="hexo基本操作"></a>hexo基本操作</h3><span id="more"></span>
+
+<ul>
+<li>$ hexo \ c –&gt; hexo\ clean $ 清空缓存</li>
+<li>$ hexo\ g –&gt; hexo\ generate $  生成网站静态文件到默认设置的public文件夹</li>
+<li>$ hexo\ d –&gt; hexo\ deploy$  自动生成网站静态文件，并部署到设定仓库</li>
+<li>$ hexo\ s –&gt; hexo\ server $ 启动本地服务器</li>
+</ul>
+<h3 id="主题配置"><a href="#主题配置" class="headerlink" title="主题配置"></a>主题配置</h3><ol>
+<li><p>下载主题文件到  <code>themes</code> 文件夹 </p>
+</li>
+<li><p>修改站点配置文件 <code> _config.yml</code>   </p>
+<p>找到 $ themes $ 这一行，修改为对应主体名字<img src="https://cdn.jsdelivr.net/gh/kjhuanhao/blogcdn/img/Snipaste_2020-02-29_10-02-23.58o49hkjdki.png" alt="image"></p>
+</li>
+</ol>
+<h3 id="部署网站"><a href="#部署网站" class="headerlink" title="部署网站"></a>部署网站</h3><ol>
+<li><p>修改站点配置文件 <code> _config.yml</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment">#配置部署</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span>  <span class="string">git</span> <span class="comment"># 规定</span></span><br><span class="line">  <span class="attr">repository:</span>  <span class="string">https://github.com/0Jmins0/Jmins0.github.io.git</span> <span class="comment">#仓库地址</span></span><br><span class="line">  <span class="attr">branch:</span>  <span class="string">main</span> <span class="comment">#规定</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment">#配置url(否则部署到github上会显示不出来主题)</span></span><br><span class="line"><span class="attr">url:</span>  <span class="string">https://0jmins0.github.io/Jmins0.github.io</span></span><br><span class="line"><span class="attr">root:</span>  <span class="string">/Jmins0.github.io/</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>根目录 $ hexo\ g + hexo\ d$ 部署到网站</p>
+</li>
+</ol>
+<h3 id="加入数学插件"><a href="#加入数学插件" class="headerlink" title="加入数学插件"></a>加入数学插件</h3><ol>
+<li><p>下载  <code>mathjax</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">npm</span> <span class="string">install</span> <span class="string">hexo-math</span> <span class="string">--save</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改主题中的配置文件 <code>_config.yml</code> </p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">per_page:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在文章中打开 <code>mathjax</code> 开关</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: hello word</span><br><span class="line"><span class="section">mathjax: true</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="设置头像"><a href="#设置头像" class="headerlink" title="设置头像"></a>设置头像</h3><ol>
+<li>在主题配置文件 <code>_confid.yml</code>中 找到 <code>avatar</code> 去掉注释启用</li>
+<li><code>round</code> 设置为 <code>true</code> ——&gt; 圆形头像</li>
+<li>将 <code>next/images/avatar.gif</code> 替换为个人头像</li>
+</ol>
+<h3 id="设置标题、作者、连接"><a href="#设置标题、作者、连接" class="headerlink" title="设置标题、作者、连接"></a>设置标题、作者、连接</h3><p>打开根目录的配置文件，位置如下：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">title:</span> <span class="string">HiHi</span> <span class="string">的</span> <span class="string">Blog</span> <span class="comment">#标题</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">&#x27;&#x27;</span> <span class="comment">#副标题 </span></span><br><span class="line"><span class="attr">description:</span> <span class="string">&#x27;欢迎来到我的小站！&#x27;</span> <span class="comment">#描述</span></span><br><span class="line"><span class="attr">keywords:</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">HiHi</span> <span class="comment"># 作者</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">zh-CN</span> <span class="comment">#语言</span></span><br><span class="line"><span class="attr">timezone:</span> <span class="string">&#x27;&#x27;</span> <span class="comment"># 时区</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="设置侧边栏社交链接"><a href="#设置侧边栏社交链接" class="headerlink" title="设置侧边栏社交链接"></a>设置侧边栏社交链接</h3><p>打开主题配置文件，将相应连接启用</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Social Links</span></span><br><span class="line"><span class="comment"># Usage: `Key: permalink || icon`</span></span><br><span class="line"><span class="comment"># Key is the link label showing to end users.</span></span><br><span class="line"><span class="comment"># Value before `||` delimiter is the target permalink, value after `||` delimiter is the name of Font Awesome icon.</span></span><br><span class="line"><span class="attr">social:</span></span><br><span class="line">  <span class="attr">GitHub:</span> <span class="string">https://github.com/0Jmins0/Jmins0.github.io</span> <span class="string">||</span> <span class="string">fab</span> <span class="string">fa-github</span></span><br><span class="line">  <span class="attr">E-Mail:</span> <span class="number">3234252073</span><span class="string">@qq.com</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-envelope</span></span><br><span class="line">  <span class="comment">#Weibo: https://weibo.com/yourname || fab fa-weibo</span></span><br><span class="line">  <span class="comment">#Google: https://plus.google.com/yourname || fab fa-google</span></span><br><span class="line">  <span class="attr">Twitter:</span> <span class="string">https://twitter.com/yourname</span> <span class="string">||</span> <span class="string">fab</span> <span class="string">fa-twitter</span></span><br><span class="line">  <span class="comment">#FB Page: https://www.facebook.com/yourname || fab fa-facebook</span></span><br><span class="line">  <span class="comment">#StackOverflow: https://stackoverflow.com/yourname || fab fa-stack-overflow</span></span><br><span class="line">  <span class="comment">#YouTube: https://youtube.com/yourname || fab fa-youtube</span></span><br><span class="line">  <span class="comment">#Instagram: https://instagram.com/yourname || fab fa-instagram</span></span><br><span class="line">  <span class="comment">#Skype: skype:yourname?call|chat || fab fa-skype</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="首页设置阅读全文"><a href="#首页设置阅读全文" class="headerlink" title="首页设置阅读全文"></a>首页设置阅读全文</h3><p>方法一：在主题配置文件搜索<code>auto_except</code> ，将 <code>enable</code> 改为 <code>true</code> 。</p>
+<p>方法二：在文章中间添加 <code>&lt;!--more--&gt;</code>，则语句前面显示在预览中。</p>
+<h3 id="添加动态背景"><a href="#添加动态背景" class="headerlink" title="添加动态背景"></a>添加动态背景</h3><ol>
+<li><p>打开主题配置文件，搜索<code>canvas</code> 找到 <code>3D library</code></p>
+</li>
+<li><p>下载需要的依赖，到 <code>next/source/lib</code> 文件夹，并改名为 <code>three</code></p>
+</li>
+<li><p>下载依赖<code>https://github.com/theme-next/theme-next-canvas-nest</code>改名为<code>canvas-nest</code></p>
+</li>
+<li><p>修改主题配置文件</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># JavaScript 3D library.</span></span><br><span class="line"><span class="comment"># Dependencies: https://github.com/theme-next/theme-next-three</span></span><br><span class="line"><span class="attr">three:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">three_waves:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">canvas_lines:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">canvas_sphere:</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="attr">canvas_nest:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="添加评论功能"><a href="#添加评论功能" class="headerlink" title="添加评论功能"></a>添加评论功能</h3><ol>
+<li><p>登录 <code>leanCloud</code> ，并创建 <code>APP</code>。</p>
+</li>
+<li><p>找到  <code>数据存储——结构化数据</code> 创建<code>Class</code> 命名为<code>Comment</code></p>
+</li>
+<li><p>找到<code>设置-应用凭证</code> 分别复制<code>AppID</code> <code>AppKey</code>到配置</p>
+</li>
+<li><p>修改主题配置</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Valine</span></span><br><span class="line"><span class="comment"># For more information: https://valine.js.org, https://github.com/xCss/Valine</span></span><br><span class="line"><span class="attr">valine:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">appid:</span> <span class="string">w0hgFFpgYXDb0kYsJiqe3NCG-gzGzoHsz</span></span><br><span class="line">  <span class="attr">appkey:</span> <span class="string">T65gVRVHNmIpYFP6QAUXbWB8</span></span><br><span class="line">  <span class="attr">notify:</span> <span class="literal">false</span> <span class="comment"># Mail notifier</span></span><br><span class="line">  <span class="attr">verify:</span> <span class="literal">false</span> <span class="comment"># Verification code</span></span><br><span class="line">  <span class="attr">placeholder:</span> <span class="string">Just</span> <span class="string">go</span> <span class="string">go</span> <span class="comment"># Comment box placeholder</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">mm</span> <span class="comment"># Gravatar style</span></span><br><span class="line">  <span class="attr">guest_info:</span> <span class="string">nick,mail,link</span> <span class="comment"># Custom comment header</span></span><br><span class="line">  <span class="attr">pageSize:</span> <span class="number">10</span> <span class="comment"># Pagination size</span></span><br><span class="line">  <span class="attr">language:</span> <span class="comment"># Language, available values: en, zh-cn</span></span><br><span class="line">  <span class="attr">visitor:</span> <span class="literal">true</span> <span class="comment"># Article reading statistic</span></span><br><span class="line">  <span class="attr">comment_count:</span> <span class="literal">false</span> <span class="comment"># If false, comment count will only be displayed in post page, not in home page</span></span><br><span class="line">  <span class="attr">recordIP:</span> <span class="literal">false</span> <span class="comment"># Whether to record the commenter IP</span></span><br><span class="line">  <span class="attr">serverURLs:</span> <span class="comment"># When the custom domain name is enabled, fill it in here (it will be detected automatically by default, no need to fill in)</span></span><br><span class="line">  <span class="comment">#post_meta_order: 0</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="添加搜索功能"><a href="#添加搜索功能" class="headerlink" title="添加搜索功能"></a>添加搜索功能</h3></li>
+</ol>
+]]></content>
+      <categories>
+        <category>learn</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Hello hexo</title>
+    <url>/Jmins0.github.io/2022/09/14/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<span id="more"></span>
+
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+</search>
