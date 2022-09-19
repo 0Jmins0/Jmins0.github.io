@@ -14,8 +14,11 @@
 
 ]]></content>
       <categories>
-        <category>Javascript NodeJS</category>
+        <category>others</category>
       </categories>
+      <tags>
+        <tag>start</tag>
+      </tags>
   </entry>
   <entry>
     <title>DP 刷题</title>
@@ -83,8 +86,13 @@
 <h3 id="CODE-2"><a href="#CODE-2" class="headerlink" title="CODE"></a>CODE</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="function">ll <span class="title">pow10</span><span class="params">(<span class="type">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//if(x&lt;0) return 1;</span></span><br><span class="line">	ll res=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(x--) </span><br><span class="line">	&#123;</span><br><span class="line">		res*=<span class="number">10</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">get</span><span class="params">(vector&lt;<span class="type">int</span>&gt; q,<span class="type">int</span> l,<span class="type">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	ll res=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=r;i&gt;=l;i--)</span><br><span class="line">	&#123;</span><br><span class="line">		res=res*<span class="number">10</span>+q[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">Count</span><span class="params">(ll p,<span class="type">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(p==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	vector&lt;<span class="type">int</span>&gt; num;</span><br><span class="line">	<span class="keyword">while</span>(p)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">int</span> t=p%<span class="number">10</span>;</span><br><span class="line">		num.<span class="built_in">push_back</span>(t);</span><br><span class="line">		p/=<span class="number">10</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">int</span> n=num.<span class="built_in">size</span>();</span><br><span class="line">	ll ans=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(x==<span class="number">0</span>&amp;&amp;i==n<span class="number">-1</span>) <span class="keyword">continue</span>;<span class="comment">//0不能是第一个数 </span></span><br><span class="line">		<span class="keyword">if</span>(x!=<span class="number">0</span>&amp;&amp;(i&lt;n<span class="number">-1</span>)) ans+=<span class="built_in">pow10</span>(i)*<span class="built_in">get</span>(num,i+<span class="number">1</span>,n<span class="number">-1</span>);<span class="comment">//情况1</span></span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(i&lt;n<span class="number">-1</span>) ans+=<span class="built_in">pow10</span>(i)*(<span class="built_in">get</span>(num,i+<span class="number">1</span>,n<span class="number">-1</span>)<span class="number">-1</span>);情况<span class="number">1</span>（<span class="number">0</span>）</span><br><span class="line">		<span class="keyword">if</span>(num[i]&gt;x) ans+=<span class="built_in">pow10</span>(i);<span class="comment">//情况2.3</span></span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(num[i]==x) ans+=<span class="built_in">get</span>(num,<span class="number">0</span>,i<span class="number">-1</span>)+<span class="number">1</span>; <span class="comment">//情况2.2</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	ll a,b;</span><br><span class="line">	cin&gt;&gt;a&gt;&gt;b;</span><br><span class="line">	<span class="keyword">if</span>(a&gt;b) <span class="built_in">swap</span>(a,b); </span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;=<span class="number">9</span>;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		ll suma=<span class="built_in">Count</span>(a<span class="number">-1</span>,i);</span><br><span class="line">		ll sumb=<span class="built_in">Count</span>(b,i);</span><br><span class="line">		cout&lt;&lt;sumb-suma&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>C++</category>
+        <category>learn</category>
       </categories>
+      <tags>
+        <tag>C++</tag>
+        <tag>算法</tag>
+        <tag>DP</tag>
+      </tags>
   </entry>
   <entry>
     <title>Hello hexo</title>
@@ -105,6 +113,9 @@
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
+      <tags>
+        <tag>start</tag>
+      </tags>
   </entry>
   <entry>
     <title>hexo Blog搭建</title>
@@ -176,15 +187,20 @@
 <li><p>修改主题配置</p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Valine</span></span><br><span class="line"><span class="comment"># For more information: https://valine.js.org, https://github.com/xCss/Valine</span></span><br><span class="line"><span class="attr">valine:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">appid:</span> <span class="string">w0hgFFpgYXDb0kYsJiqe3NCG-gzGzoHsz</span></span><br><span class="line">  <span class="attr">appkey:</span> <span class="string">T65gVRVHNmIpYFP6QAUXbWB8</span></span><br><span class="line">  <span class="attr">notify:</span> <span class="literal">false</span> <span class="comment"># Mail notifier</span></span><br><span class="line">  <span class="attr">verify:</span> <span class="literal">false</span> <span class="comment"># Verification code</span></span><br><span class="line">  <span class="attr">placeholder:</span> <span class="string">Just</span> <span class="string">go</span> <span class="string">go</span> <span class="comment"># Comment box placeholder</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">mm</span> <span class="comment"># Gravatar style</span></span><br><span class="line">  <span class="attr">guest_info:</span> <span class="string">nick,mail,link</span> <span class="comment"># Custom comment header</span></span><br><span class="line">  <span class="attr">pageSize:</span> <span class="number">10</span> <span class="comment"># Pagination size</span></span><br><span class="line">  <span class="attr">language:</span> <span class="comment"># Language, available values: en, zh-cn</span></span><br><span class="line">  <span class="attr">visitor:</span> <span class="literal">true</span> <span class="comment"># Article reading statistic</span></span><br><span class="line">  <span class="attr">comment_count:</span> <span class="literal">false</span> <span class="comment"># If false, comment count will only be displayed in post page, not in home page</span></span><br><span class="line">  <span class="attr">recordIP:</span> <span class="literal">false</span> <span class="comment"># Whether to record the commenter IP</span></span><br><span class="line">  <span class="attr">serverURLs:</span> <span class="comment"># When the custom domain name is enabled, fill it in here (it will be detected automatically by default, no need to fill in)</span></span><br><span class="line">  <span class="comment">#post_meta_order: 0</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="添加搜索功能"><a href="#添加搜索功能" class="headerlink" title="添加搜索功能"></a>添加搜索功能</h3></li>
+</li>
+<li><p>只在文章界面设置评论功能，关闭标签页等页面的评论功能</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">comments:</span> <span class="literal">false</span><span class="string">//加在对应页面</span> <span class="string">.md文件的front</span> <span class="string">matter中</span></span><br></pre></td></tr></table></figure></li>
 </ol>
-]]></content>
+<h3 id="添加搜索功能"><a href="#添加搜索功能" class="headerlink" title="添加搜索功能"></a>添加搜索功能</h3>]]></content>
       <categories>
         <category>learn</category>
       </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
   </entry>
   <entry>
-    <title>Java——爪哇</title>
+    <title>爪哇</title>
     <url>/Jmins0.github.io/2022/09/19/Java/</url>
     <content><![CDATA[<h1 id="课后习题"><a href="#课后习题" class="headerlink" title="课后习题"></a>课后习题</h1><ol>
 <li>Java语言中可以采用什么语句跳出多重循环？举例说明。</li>
@@ -246,12 +262,15 @@
 </ul>
 ]]></content>
       <categories>
-        <category>Java</category>
         <category>learn</category>
       </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>course</tag>
+      </tags>
   </entry>
   <entry>
-    <title>BUG总结</title>
+    <title>BUG和WO只能留一个</title>
     <url>/Jmins0.github.io/2022/09/19/BUG/</url>
     <content><![CDATA[<h2 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a><code>hexo</code></h2><ol>
 <li><code>hexo d</code>失败</li>
@@ -276,5 +295,8 @@
       <categories>
         <category>learn</category>
       </categories>
+      <tags>
+        <tag>bug</tag>
+      </tags>
   </entry>
 </search>
