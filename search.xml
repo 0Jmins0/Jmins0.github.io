@@ -250,4 +250,29 @@
         <category>learn</category>
       </categories>
   </entry>
+  <entry>
+    <title>BUG总结</title>
+    <url>/Jmins0.github.io/2022/09/19/BUG/</url>
+    <content><![CDATA[<h2 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a><code>hexo</code></h2><ol>
+<li><code>hexo d</code>失败</li>
+</ol>
+<ul>
+<li><p>报错：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">unable</span> <span class="string">to</span> <span class="string">access</span> <span class="attr">&#x27;https://github.com/0Jmins0/Jmins0.github.io.git/&#x27;:</span> <span class="attr">Failed to connect to 127.0.0.1 port 7890 after 2069 ms:</span> <span class="string">Connection</span> <span class="string">refuse`</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>解决</p>
+<ul>
+<li><p>取消代理：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">git</span> <span class="string">config</span> <span class="string">--global</span> <span class="string">--unset</span> <span class="string">http.proxy</span></span><br><span class="line"><span class="string">git</span> <span class="string">config</span> <span class="string">--global</span> <span class="string">--unset</span> <span class="string">https.proxy</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置代理</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">git</span> <span class="string">config</span> <span class="string">--global</span> <span class="string">http.proxy</span> <span class="string">http://127.0.0.1:7890</span></span><br><span class="line"><span class="string">git</span> <span class="string">config</span> <span class="string">--global</span> <span class="string">https.proxy</span> <span class="string">http://127.0.0.1:7890</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>learn</category>
+      </categories>
+  </entry>
 </search>

@@ -194,6 +194,99 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://0jmins0.github.io/Jmins0.github.io/2022/09/19/BUG/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Jmins0.github.io/images/wm.gif">
+      <meta itemprop="name" content="HiHi">
+      <meta itemprop="description" content="欢迎来到我的小站！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HiHi 的 Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Jmins0.github.io/2022/09/19/BUG/" class="post-title-link" itemprop="url">BUG总结</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-09-19 17:42:17 / 修改时间：17:53:52" itemprop="dateCreated datePublished" datetime="2022-09-19T17:42:17+08:00">2022-09-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Jmins0.github.io/categories/learn/" itemprop="url" rel="index"><span itemprop="name">learn</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/Jmins0.github.io/2022/09/19/BUG/" class="post-meta-item leancloud_visitors" data-flag-title="BUG总结" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a><code>hexo</code></h2><ol>
+<li><code>hexo d</code>失败</li>
+</ol>
+<ul>
+<li><p>报错：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">unable</span> <span class="string">to</span> <span class="string">access</span> <span class="attr">&#x27;https://github.com/0Jmins0/Jmins0.github.io.git/&#x27;:</span> <span class="attr">Failed to connect to 127.0.0.1 port 7890 after 2069 ms:</span> <span class="string">Connection</span> <span class="string">refuse`</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>解决</p>
+<ul>
+<li><p>取消代理：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">git</span> <span class="string">config</span> <span class="string">--global</span> <span class="string">--unset</span> <span class="string">http.proxy</span></span><br><span class="line"><span class="string">git</span> <span class="string">config</span> <span class="string">--global</span> <span class="string">--unset</span> <span class="string">https.proxy</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置代理</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">git</span> <span class="string">config</span> <span class="string">--global</span> <span class="string">http.proxy</span> <span class="string">http://127.0.0.1:7890</span></span><br><span class="line"><span class="string">git</span> <span class="string">config</span> <span class="string">--global</span> <span class="string">https.proxy</span> <span class="string">http://127.0.0.1:7890</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://0jmins0.github.io/Jmins0.github.io/2022/09/19/Java/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -709,7 +802,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/Jmins0.github.io/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
