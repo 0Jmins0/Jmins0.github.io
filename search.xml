@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Hello Blog!</title>
+    <url>/Jmins0.github.io/2022/07/28/Hello_Blog/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><p><em>斜体</em></p>
+<p><strong>粗体文字</strong></p>
+<p><em><strong>粗斜体</strong></em></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;Hello Blog!&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>Javascript NodeJS</category>
+      </categories>
+  </entry>
+  <entry>
     <title>DP 刷题</title>
     <url>/Jmins0.github.io/2022/07/29/DP/</url>
     <content><![CDATA[<h1 id="01背包"><a href="#01背包" class="headerlink" title="01背包"></a>01背包</h1><h2 id="Task-Computing"><a href="#Task-Computing" class="headerlink" title="Task Computing"></a><strong>Task Computing</strong></h2><span id="more"></span>
@@ -70,20 +87,70 @@
       </categories>
   </entry>
   <entry>
-    <title>Hello Blog!</title>
-    <url>/Jmins0.github.io/2022/07/28/Hello_Blog/</url>
-    <content><![CDATA[<span id="more"></span>
+    <title>Java——爪哇</title>
+    <url>/Jmins0.github.io/2022/09/19/Java/</url>
+    <content><![CDATA[<h1 id="课后习题"><a href="#课后习题" class="headerlink" title="课后习题"></a>课后习题</h1><ol>
+<li>Java语言中可以采用什么语句跳出多重循环？举例说明。</li>
+</ol>
+<ul>
+<li><p>break lab</p>
+</li>
+<li><p>continue lab</p>
+</li>
+</ul>
+<ol start="2">
+<li>什么是自动装箱，什么自动拆箱，举例说明。</li>
+</ol>
+<span id="more"></span>
 
-<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><p><em>斜体</em></p>
-<p><strong>粗体文字</strong></p>
-<p><em><strong>粗斜体</strong></em></p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;Hello Blog!&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Integer varInteger=<span class="number">100</span>;<span class="comment">//自动装箱</span></span><br><span class="line"><span class="comment">//等价于</span></span><br><span class="line">integer varInteger=Integer.valueOf(<span class="number">100</span>);</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> varInt=varInteger;<span class="comment">//制动拆箱</span></span><br><span class="line"><span class="comment">//等价于</span></span><br><span class="line"><span class="type">int</span> varInt=varInteger.intValue();</span><br></pre></td></tr></table></figure>
 
+<h1 id="泪和对象"><a href="#泪和对象" class="headerlink" title="泪和对象"></a>泪和对象</h1><ol>
+<li>对象和对象的引用</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">dog</span>();<span class="comment">//创建对象，规划堆（heap）内存，没有引用则为孤儿，自动回收</span></span><br><span class="line">dog dp;<span class="comment">// 声明一个引用（不会生成对象，不会关联对象），存栈里</span></span><br><span class="line">dp=<span class="keyword">new</span> <span class="title class_">dog</span>()<span class="comment">//dg指向实际对象</span></span><br></pre></td></tr></table></figure>
 
+<ol>
+<li>参数传递</li>
+</ol>
+<ul>
+<li>简单类型作为变量参数</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">pubilc <span class="keyword">class</span> <span class="title class_">ValuePass</span>&#123;</span><br><span class="line">	prinvate <span class="keyword">static</span> <span class="type">int</span> a;<span class="comment">//静态数据-属于类</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(Strring [] args)</span>&#123;</span><br><span class="line">		modify(a);<span class="comment">//方法引用，实参传入</span></span><br><span class="line">		System.out.println(a);</span><br><span class="line">&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">modify</span><span class="params">(<span class="type">int</span> a)</span>&#123;</span><br><span class="line">		a++;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//输出0 </span></span><br></pre></td></tr></table></figure>
 
+<ul>
+<li>对象引用变量作为参数</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">InsClass</span>&#123;</span><br><span class="line">	<span class="type">int</span> value;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RunIntClass</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">modefyValue</span><span class="params">(IntClass s,<span class="type">int</span> val)</span>&#123;</span><br><span class="line">		s.value=val;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args&#123;</span></span><br><span class="line"><span class="params">		IntClass s=new IntClass()</span>;<span class="comment">// 分配堆空间</span></span><br><span class="line">		modifyValue(a,<span class="number">8</span>);<span class="comment">//分配栈空间</span></span><br><span class="line">		System.out.println(a.value);	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>数组对象</li>
+</ol>
+<ul>
+<li>声明格式</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> [] arr;</span><br><span class="line">Stiring [] ex;</span><br><span class="line"><span class="comment">//int []10] arr 是错误滴！</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>数组初始化对象</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span>[] arr=<span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">10</span>];<span class="comment">//在堆上为数组对象分配整型空间，默认为0；</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>二维数组</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> arr[][]<span class="comment">//数组声明</span></span><br><span class="line">arr=<span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">3</span>][<span class="number">4</span>]<span class="comment">//数组初始化</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>Static 和 final 修饰符</li>
+</ol>
+<ul>
+<li>static数据成员初始化：静态数据成员仅在类加载时进行初始化，且只执行一次初始化、首次访问某类的静态字段或静态方法是，会加载该类，并执行静态初始化语句</li>
+</ul>
 ]]></content>
       <categories>
-        <category>Javascript NodeJS</category>
+        <category>Java</category>
+        <category>learn</category>
       </categories>
   </entry>
   <entry>
@@ -182,72 +249,5 @@
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>Java——爪哇</title>
-    <url>/Jmins0.github.io/2022/09/19/Java/</url>
-    <content><![CDATA[<h1 id="课后习题"><a href="#课后习题" class="headerlink" title="课后习题"></a>课后习题</h1><ol>
-<li>Java语言中可以采用什么语句跳出多重循环？举例说明。</li>
-</ol>
-<ul>
-<li><p>break lab</p>
-</li>
-<li><p>continue lab</p>
-</li>
-</ul>
-<ol start="2">
-<li>什么是自动装箱，什么自动拆箱，举例说明。</li>
-</ol>
-<span id="more"></span>
-
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Integer varInteger=<span class="number">100</span>;<span class="comment">//自动装箱</span></span><br><span class="line"><span class="comment">//等价于</span></span><br><span class="line">integer varInteger=Integer.valueOf(<span class="number">100</span>);</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> varInt=varInteger;<span class="comment">//制动拆箱</span></span><br><span class="line"><span class="comment">//等价于</span></span><br><span class="line"><span class="type">int</span> varInt=varInteger.intValue();</span><br></pre></td></tr></table></figure>
-
-<h1 id="泪和对象"><a href="#泪和对象" class="headerlink" title="泪和对象"></a>泪和对象</h1><ol>
-<li>对象和对象的引用</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">dog</span>();<span class="comment">//创建对象，规划堆（heap）内存，没有引用则为孤儿，自动回收</span></span><br><span class="line">dog dp;<span class="comment">// 声明一个引用（不会生成对象，不会关联对象），存栈里</span></span><br><span class="line">dp=<span class="keyword">new</span> <span class="title class_">dog</span>()<span class="comment">//dg指向实际对象</span></span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>参数传递</li>
-</ol>
-<ul>
-<li>简单类型作为变量参数</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">pubilc <span class="keyword">class</span> <span class="title class_">ValuePass</span>&#123;</span><br><span class="line">	prinvate <span class="keyword">static</span> <span class="type">int</span> a;<span class="comment">//静态数据-属于类</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(Strring [] args)</span>&#123;</span><br><span class="line">		modify(a);<span class="comment">//方法引用，实参传入</span></span><br><span class="line">		System.out.println(a);</span><br><span class="line">&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">modify</span><span class="params">(<span class="type">int</span> a)</span>&#123;</span><br><span class="line">		a++;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//输出0 </span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>对象引用变量作为参数</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">InsClass</span>&#123;</span><br><span class="line">	<span class="type">int</span> value;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RunIntClass</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">modefyValue</span><span class="params">(IntClass s,<span class="type">int</span> val)</span>&#123;</span><br><span class="line">		s.value=val;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args&#123;</span></span><br><span class="line"><span class="params">		IntClass s=new IntClass()</span>;<span class="comment">// 分配堆空间</span></span><br><span class="line">		modifyValue(a,<span class="number">8</span>);<span class="comment">//分配栈空间</span></span><br><span class="line">		System.out.println(a.value);	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>数组对象</li>
-</ol>
-<ul>
-<li>声明格式</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> [] arr;</span><br><span class="line">Stiring [] ex;</span><br><span class="line"><span class="comment">//int []10] arr 是错误滴！</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>数组初始化对象</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span>[] arr=<span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">10</span>];<span class="comment">//在堆上为数组对象分配整型空间，默认为0；</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>二维数组</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> arr[][]<span class="comment">//数组声明</span></span><br><span class="line">arr=<span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">3</span>][<span class="number">4</span>]<span class="comment">//数组初始化</span></span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>Static 和 final 修饰符</li>
-</ol>
-<ul>
-<li>static数据成员初始化：静态数据成员仅在类加载时进行初始化，且只执行一次初始化、首次访问某类的静态字段或静态方法是，会加载该类，并执行静态初始化语句</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Java</category>
-        <category>learn</category>
-      </categories>
   </entry>
 </search>
