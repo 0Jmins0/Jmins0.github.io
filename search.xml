@@ -259,6 +259,8 @@
 <ul>
 <li><p>报错：</p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">unable</span> <span class="string">to</span> <span class="string">access</span> <span class="attr">&#x27;https://github.com/0Jmins0/Jmins0.github.io.git/&#x27;:</span> <span class="attr">Failed to connect to 127.0.0.1 port 7890 after 2069 ms:</span> <span class="string">Connection</span> <span class="string">refuse`</span></span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
 </li>
 <li><p>解决</p>
 <ul>
