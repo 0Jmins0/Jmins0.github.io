@@ -258,8 +258,93 @@
 <li>Static 和 final 修饰符</li>
 </ol>
 <ul>
-<li>static数据成员初始化：静态数据成员仅在类加载时进行初始化，且只执行一次初始化、首次访问某类的静态字段或静态方法是，会加载该类，并执行静态初始化语句</li>
+<li><p>static数据成员初始化：静态数据成员仅在类加载时进行初始化，且只执行一次初始化、首次访问某类的静态字段或静态方法是，会加载该类，并执行静态初始化语句</p>
+</li>
+<li><p>静态方法：</p>
+</li>
 </ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">IntClass</span>&#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="type">int</span> <span class="title function_">countNum</span><span class="params">()</span>&#123;</span><br><span class="line">			<span class="keyword">return</span> num;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String args[])</span>&#123;</span><br><span class="line"> System.out.println(IntClass.countNum());<span class="comment">//首次访问加载该类</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>final</code>修饰属性，则属性为常量</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="type">int</span> NUM=<span class="number">20</span>;</span><br><span class="line">NUM=<span class="number">30</span>;<span class="comment">//编译错误</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>final</code>修饰方法，则该方法在子类当中不能被覆盖</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Parent</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">final</span> <span class="title function_">voidmethod1</span><span class="params">()</span>&#123;&#125;<span class="comment">//这个方法不能被子类继承</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Child</span> <span class="keyword">extends</span> <span class="title class_">Parent</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title function_">method1</span><span class="params">()</span>&#123;...&#125;<span class="comment">//编译错误</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>final</code>修饰类，则该类不能被继承</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Parent</span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">final</span> <span class="keyword">class</span> <span class="title class_">Person</span> entends Parent&#123;</span><br><span class="line">&#125;<span class="comment">//可以继承Parent类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Child</span> <span class="keyword">extends</span> <span class="title class_">Person</span>&#123;</span><br><span class="line">&#125;<span class="comment">//编译报错，不能继承Person类</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>包（ <code>package</code> ）</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//被访问</span></span><br><span class="line"><span class="keyword">package</span> com.resource;</span><br><span class="line"><span class="comment">//类访问权限与属性、方法访问权限需修改为public</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//访问</span></span><br><span class="line"><span class="keyword">import</span> com.resource.FinghterPlane</span><br></pre></td></tr></table></figure>
+
+<h1 id="第五章-封装、继承与多态"><a href="#第五章-封装、继承与多态" class="headerlink" title="第五章 封装、继承与多态"></a>第五章 封装、继承与多态</h1><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setName</span><span class="params">(String_name)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(_name!=<span class="literal">null</span>)&#123;<span class="comment">//提高安全性</span></span><br><span class="line">			name=_name.trim();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="一、封装"><a href="#一、封装" class="headerlink" title="一、封装"></a>一、封装</h2><ol>
+<li>访问权限控制符<ol>
+<li><code>publc</code>(公共访问权限）</li>
+<li><code>protected</code>(包访问权继承访问权限）</li>
+<li>无访问控制符修饰（默认为包访问权限）</li>
+<li><code>private</code>(类内部访问权限）</li>
+</ol>
+</li>
+</ol>
+<h2 id="二、继承"><a href="#二、继承" class="headerlink" title="二、继承"></a>二、继承</h2><ol>
+<li>通过 <code>extends</code> 关键字实现</li>
+<li>子类继承了父类的所有属性和方法，但只有 <code>public</code>、 <code>protected</code>的属性和方法在子类是可见的。</li>
+</ol>
+<h2 id="三、多态"><a href="#三、多态" class="headerlink" title="三、多态"></a>三、多态</h2><ol>
+<li><p>多态的概念：多态是指一个程序中同名的不同方法共存情况</p>
+</li>
+<li><p>Java中提供两种多态机制 重载 <code>overloading</code>与 覆写 <code>overriding</code></p>
+<p>​	a.重载：方法名称相同，参数类型或个数不同</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">stuMange</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getScore</span><span class="params">(<span class="type">int</span> i)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getScore</span><span class="params">(Integer i)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getScore</span><span class="params">(<span class="type">int</span> ... i)</span>&#123;<span class="comment">//可能有多个参数</span></span><br><span class="line">		<span class="keyword">return</span> <span class="number">3</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">p.getScore(<span class="number">5</span>) <span class="comment">//调用优先级：1&gt;2&gt;3</span></span><br></pre></td></tr></table></figure>
+
+<p>​	b.覆写：子类堆父类的同名方法重新进行定义。</p>
+<p>​		(i)子类的访问修饰符权限应大于等于父类。</p>
+<p>​		(ii)应该能够向上转型为父类的返回类型。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Parent</span>&#123;</span><br><span class="line">	Number <span class="title function_">getScore</span><span class="params">(<span class="type">int</span> a)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> Integer(<span class="number">7</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Son</span> <span class="keyword">extends</span> <span class="title class_">Parent</span>&#123;</span><br><span class="line">	<span class="meta">@override</span><span class="comment">//帮忙检查是否覆写</span></span><br><span class="line">	Number <span class="title function_">getScore</span><span class="params">(<span class="type">int</span> b)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">INteger</span>(<span class="number">8</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="第六章-继承与多态"><a href="#第六章-继承与多态" class="headerlink" title="第六章 继承与多态"></a>第六章 继承与多态</h1><h2 id="一、-this-与-super"><a href="#一、-this-与-super" class="headerlink" title="一、 this 与 super"></a>一、 <code>this</code> 与 <code>super</code></h2><ol>
+<li><p><code>this</code></p>
+<ol>
+<li>主要应用场合：<ol>
+<li>表示当前对象引用，常用与形参或局部变量与类成员变量同名的情形，使用 <code>this.</code> 成员名表示当前对象的成员。</li>
+<li>调用当前类的构造方法</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p><code>super</code> 访问当前类的直接父亲，主要应用场合：</p>
+<ol>
+<li><p>子类的数据成员或成员方法与父类的数据成员或成员方法名字相同时，当要调用父亲的痛，同名方法或同名数据成员时则可用 <code>super.</code>数据成员、成员方法。</p>
+</li>
+<li><p><code>super</code> （参数列表），表示现实调用父类构造方法，对子类对象中从父类继承过来的数据成员进行初始化。</p>
+</li>
+<li><p>显式使用 <code>super</code> 调用父类的构造方法</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">AC</span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="type">int</span> x=<span class="number">0</span>,y=<span class="number">0</span>,z=<span class="number">0</span>;</span><br><span class="line">	AC (<span class="type">int</span> x)&#123;</span><br><span class="line">		<span class="built_in">this</span>.x=x;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SonAC</span> <span class="keyword">extends</span> <span class="title class_">AC</span>&#123;</span><br><span class="line">	<span class="type">int</span> a=<span class="number">0</span>,b=<span class="number">0</span>,c=<span class="number">0</span>;</span><br><span class="line">	SonAC (<span class="type">int</span> x)&#123;</span><br><span class="line">		<span class="built_in">super</span>(x);<span class="comment">//调用父类构造方法</span></span><br><span class="line">		a=x+<span class="number">7</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>隐式使用 <code>super</code> 调用父类的构造方法</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Pare</span>&#123;</span><br><span class="line">	<span class="type">int</span> i=<span class="number">3</span>;</span><br><span class="line">	Pare()&#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;call super()&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Construct</span> <span class="keyword">extends</span> <span class="title class_">Pare</span>&#123;</span><br><span class="line">	<span class="type">int</span> i=<span class="number">10</span>;</span><br><span class="line">	Construct()&#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;execute Construct()&quot;</span>);	</span><br><span class="line">	&#125;</span><br><span class="line">	Construct(<span class="type">int</span> num)&#123;</span><br><span class="line">		<span class="built_in">this</span>();</span><br><span class="line">		System.out.println(<span class="string">&quot;excute Construct(int));</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">	public static void main(String[] args)&#123;</span></span><br><span class="line"><span class="string">		Construct ct=new Construct(9);</span></span><br><span class="line"><span class="string">		System.out.println(ct.i);</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">//输出结果</span></span><br><span class="line"><span class="string">/*</span></span><br><span class="line"><span class="string">call super()</span></span><br><span class="line"><span class="string">ececute Construct()</span></span><br><span class="line"><span class="string">execute COnstruct()</span></span><br><span class="line"><span class="string">10</span></span><br><span class="line"><span class="string">*/</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p>抽象类的定义</p>
+<ol>
+<li><p>抽象类：用 <code>abstract</code> 修饰的类称为抽象类，用 <code>abstract</code> 修饰的成员方法称为抽象方法。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">A</span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="type">int</span> m;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title function_">a</span><span class="params">()</span>;<span class="comment">//抽象方法</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title function_">b</span><span class="params">()</span>;<span class="comment">//抽象方法</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">c</span><span class="params">()</span>&#123;<span class="comment">//非抽象方法可以调用抽象方法</span></span><br><span class="line">		a();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">B</span> <span class="keyword">extends</span> <span class="title class_">A</span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">b</span><span class="params">()</span>&#123;&#125;<span class="comment">//仅实现抽象方法b()</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">C</span> <span class="keyword">extends</span> <span class="title class_">B</span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">a</span><span class="params">()</span>&#123;&#125;<span class="comment">//实现抽象方法a()</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>抽象类的应用：抽象类和具体类的关系就是一般类和特殊类之间的关系，在继承体系中对外提供抽象的子类公共的行为接口。</p>
+</li>
+</ol>
+</li>
+</ol>
 ]]></content>
       <categories>
         <category>learn</category>
