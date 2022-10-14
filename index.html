@@ -194,7 +194,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://0jmins0.github.io/Jmins0.github.io/2022/10/14/Java%E9%93%B6%E8%A1%8C%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%9E%E9%AA%8C/">
+    <link itemprop="mainEntityOfPage" href="https://0jmins0.github.io/Jmins0.github.io/2022/10/14/test/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/Jmins0.github.io/images/wm.gif">
@@ -208,7 +208,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/Jmins0.github.io/2022/10/14/Java%E9%93%B6%E8%A1%8C%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%9E%E9%AA%8C/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/Jmins0.github.io/2022/10/14/test/" class="post-title-link" itemprop="url">test</a>
         </h2>
 
         <div class="post-meta">
@@ -217,13 +217,12 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-10-14 14:05:42 / 修改时间：14:27:40" itemprop="dateCreated datePublished" datetime="2022-10-14T14:05:42+08:00">2022-10-14</time>
+              <time title="创建时间：2022-10-14 14:58:24" itemprop="dateCreated datePublished" datetime="2022-10-14T14:58:24+08:00">2022-10-14</time>
             </span>
 
           
-            <span id="/Jmins0.github.io/2022/10/14/Java%E9%93%B6%E8%A1%8C%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%9E%E9%AA%8C/" class="post-meta-item leancloud_visitors" data-flag-title="" title="阅读次数">
+            <span id="/Jmins0.github.io/2022/10/14/test/" class="post-meta-item leancloud_visitors" data-flag-title="test" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -242,169 +241,94 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>个人银行账户管理系统课程设计报告</p>
-<h1 id="一、课程设计要求与目的"><a href="#一、课程设计要求与目的" class="headerlink" title="一、课程设计要求与目的"></a>一、课程设计要求与目的</h1><ol>
-<li><p>模仿个人银行账户管理系统的C++版本（第4章-第9章），使用Java语言重新实现该系统，比较C++与Java在实现上的异同，熟练掌握Java基础及语法。</p>
-</li>
-<li><p>根据业务需求的增加，对个人银行账户管理系统进行功能上的完善，利用面向对象的思想对代码进行重构，体会抽象、封装、继承、多态等特性在实际系统中的应用，掌握构造可复用、可扩展、可维护软件的基本技能。</p>
-</li>
-</ol>
-<h1 id="二、课程设计版本记录"><a href="#二、课程设计版本记录" class="headerlink" title="二、课程设计版本记录"></a>二、课程设计版本记录</h1><h2 id="1-、个人银行账户管理系统版本0-1（对应第4章记录）"><a href="#1-、个人银行账户管理系统版本0-1（对应第4章记录）" class="headerlink" title="1 、个人银行账户管理系统版本0.1（对应第4章记录）"></a>1 、个人银行账户管理系统版本0.1（对应第4章记录）</h2><p>1.1  系统需求</p>
-<p>能够建立账户，其中账户包括账号、余额、年利率，上次变更日期，余额按日累加之和。需要实现功能：记录一笔账、获得到指定日期为止的存款金额按日累加值<code>accumulate</code>、获取ID、获取余额、获取利率、存入现金、取出现金，每年进行一次结算利息，显示账户信息。</p>
-<p>1.2  系统设计</p>
-<p>设计类 <code>SavingsAccount</code> 包括成员账号<code>id</code>、余额<code>balance</code>、年利率<code>rate</code>，上次变更日期<code>lastDate</code>，余额按日累加之和<code>accumulation</code>。包括方法记录一笔账<code>record</code>、获得到指定日期为止的存款金额按日累加值<code>accumulate（）</code>、获得ID <code>getID（）</code>、获得余额<code>getBalance（）</code>、获得年利率<code> getRate（）</code>、存入现金<code> deposit（）</code>、取出现金 <code>withdraw（）</code>、结算利息 <code>settle（）</code>、显示账户信息<code> show（）</code>。当余额变动时，需要做的是将变动前的余额与该余额所持续的天数相乘，累加到 <code>accumulation</code>中，再修改 <code>lastDate</code>。用来结算利息，因为余额变化，会导致利息不一样，所以，每次余额变动都要累计计算。</p>
-<p>1.3  系统实现</p>
-<p>对重要的类及内部的数据结构进行介绍（可以适当的贴一些代码，比如类的定义） 、</p>
-<p>类定义如图：</p>
-<p><img src="file:///C:/Users/JMhhh/AppData/Local/Temp/msohtmlclip1/01/clip_image002.jpg" alt="img"></p>
-<p>1.4  系统测试</p>
-<p>能够创建账户，进行存款，取款，计算余额，符合设计预期。</p>
-<p><img src="file:///C:/Users/JMhhh/AppData/Local/Temp/msohtmlclip1/01/clip_image004.jpg" alt="img"></p>
-<p>1.5  体会心得</p>
-<ul>
-<li><p>利息结算和累计函数设计十分巧妙，可以很方便的结算利息。</p>
-</li>
-<li><p>实现同一项目，Java比C++更严谨，全想对象语言实现起来也更方便。</p>
-</li>
-<li><p>实例化对象时Java相比于C++需要使用关键字<code>new</code>。</p>
-</li>
-<li><p>第一个部分的修改，也弥补了很多C++没有学到的面向对象的基础知识。</p>
-</li>
-</ul>
-<h2 id="2-个人银行账户管理系统版本0-2（对应第5章记录）"><a href="#2-个人银行账户管理系统版本0-2（对应第5章记录）" class="headerlink" title="2  个人银行账户管理系统版本0.2（对应第5章记录）"></a>2  个人银行账户管理系统版本0.2（对应第5章记录）</h2><p>2.1 系统需求</p>
-<p>新增了静态属性与方法，用来计算当前所有账户总金额。</p>
-<p>2.2 系统设计</p>
-<p>在 <code>SavingAccount</code> 中添加静态成员变量 <code>total</code> ，同时添加相应成员函数 <code>getToatal（）</code>，并将不需要修改的，设置成常成员函数。</p>
-<p>2.3 系统实现</p>
-<p><img src="file:///C:/Users/JMhhh/AppData/Local/Temp/msohtmlclip1/01/clip_image006.jpg" alt="img"></p>
-<p><img src="file:///C:/Users/JMhhh/AppData/Local/Temp/msohtmlclip1/01/clip_image008.jpg" alt="img"></p>
-<p><img src="file:///C:/Users/JMhhh/AppData/Local/Temp/msohtmlclip1/01/clip_image010.jpg" alt="img"></p>
-<p>2.4 系统测试 </p>
-<p>增加了<code> total</code> 所有账户总额的显示结果，符合预期。</p>
-<p> <img src="file:///C:/Users/JMhhh/AppData/Local/Temp/msohtmlclip1/01/clip_image012.jpg" alt="img"></p>
-<p>2.5 体会心得</p>
-<ul>
-<li><p>静态数据成员仅由静态成员方法访问。</p>
-</li>
-<li><p><code>Java</code>没有<code>const</code>关键字，<code>C++</code>中的<code>const</code>类似于<code>Java</code>的<code>final</code>。同时书写的位置有所不同。</p>
-</li>
-<li><p><code>C++</code>调用类的静态成员函数是<code>&lt;类名&gt;::&lt;函数名&gt;</code>，而<code>Java</code>是<code>&lt;类名&gt;.&lt;函数名&gt;</code>。</p>
-</li>
-</ul>
-<h2 id="3-、个人银行管理系统版本0-3（对应第6章记录）"><a href="#3-、个人银行管理系统版本0-3（对应第6章记录）" class="headerlink" title="3 、个人银行管理系统版本0.3（对应第6章记录）"></a>3 、个人银行管理系统版本0.3（对应第6章记录）</h2><p>3.1     系统需求</p>
-<p>新增了字符串和对象数组，用字符串存储ID，余额不足不能取钱，并显示错误，能够更直观的显示日期。</p>
-<p>3.2     系统设计</p>
-<p>设计日期类<code> Date</code> ，其中包括数据成员 <code>DAYS_BEFORE_MONTH[]</code>数组，用来存储某月1日前有多少天，<code> year</code>、<code>month</code>、<code>day</code>、<code>totalDays</code>该日期是公元元年1月1日开始的第几天，设计函数 <code>distance（）</code>计算两个日期相差多少天，函数 <code>show（）</code>显示年月日。 </p>
-<p>3.3     系统实现</p>
-<p>描述账号的数据类型由<code>int</code>改为<code>string</code>。描述日期的数据类型由<code>int</code>改为<code>Date</code>类，并为<code>deposit</code>,<code>withdraw</code>和<code>settle</code>并增加了一个用来存储该笔账目信息的<code>string</code>型的<code>desc</code>参数。增加一个专用于输出错误信息的<code>error</code>方法。</p>
-<p><img src="file:///C:/Users/JMhhh/AppData/Local/Temp/msohtmlclip1/01/clip_image014.jpg" alt="img"></p>
-<p>3.4     系统测试</p>
-<p>能够更直观的看到日期，同时能够使用字符串存储账号和说明文字，符合设计预期。</p>
-<p><img src="file:///C:/Users/JMhhh/AppData/Local/Temp/msohtmlclip1/01/clip_image016.jpg" alt="img"></p>
-<p>3.5     体会心得</p>
-<ul>
-<li><p><code>Java</code>数组必须先初始化才可以使用，初始化的时候会分配内存；动态初始化和静态初始化不能同时存在。</p>
-</li>
-<li><p><code>Date</code>类的设置，使得用户能够更直观的输入或者读出日期时间，同时，程序员也能很方便的设计日期相关的操作，十分便捷。</p>
-</li>
-<li><p>增添的备注功能，记录哪笔账去哪里，也更加符合现实生活的需求。</p>
-</li>
-</ul>
-<h2 id="4、个人银行管理系统版本0-4"><a href="#4、个人银行管理系统版本0-4" class="headerlink" title="4、个人银行管理系统版本0.4"></a>4、个人银行管理系统版本0.4</h2><p>4.1     系统需求</p>
-<ul>
-<li><p>增加了信用账户的需求：</p>
-</li>
-<li><p>信用账户允许透支，每个信用账户都有一定的信用额度，总的透支金额应在这个额度之内。</p>
-</li>
-<li><p>如果信用账户内存钱，不会有利息，但使用信用账户透支则需要支付利息，从透支那一天其就开始计算利息。</p>
-</li>
-<li><p>信用账户每月进行以及结算，假定结算日为每月的1日。每年需要交一次年费，假定每年1月1日结算的时候扣缴年费。</p>
-</li>
-</ul>
-<p>4.2     系统设计</p>
-<ul>
-<li><p>设计一个基类<code>Account</code>用来描述所有账户的共性，派生出<code>SavingsAccount</code>类储蓄账户，和<code>CreditAccount</code>类信用账户。</p>
-</li>
-<li><p>在基类<code>Account</code>中，保留数据成员:<code>id</code>账号，<code>balance</code>余额，<code>total</code>静态数据成员账户总金额，成员方法:<code>show（）</code>输出信息。原来的<code>record（）</code>,<code>error（）</code>方法的访问控制权限修改为<code>protected</code>，供派生类调用，同时还有一个保护的构造方法。</p>
-</li>
-<li><p>在派生类中实现，处理存款的成员方法 <code>deposit（）</code>、处理取款的成员方法 <code>withdraw（）</code>、处理结算的成员方法 <code>settle（）</code>。储蓄账户用来表示年利率的<code>rate（）</code>、信用账户用来表示信用额度的<code>credit（）</code>、表示日利率 <code>rate（）</code>、表示年费<code>fee（）</code>以及其获取他们的成员方法。</p>
-</li>
-<li><p>创建一个新类<code>Accumulator</code>用来实现各个账户的按日累加和的功能，设计 <code>Accumulator</code>类类型的累加器 <code>acc</code> 在两个派生类中分别实现各自功能。</p>
-</li>
-</ul>
-<p>4.3     系统实现</p>
-<p><code>Accumulator </code>将某数值按日累加</p>
-<p><img src="file:///C:/Users/JMhhh/AppData/Local/Temp/msohtmlclip1/01/clip_image018.jpg" alt="img"></p>
-<p>派生类信用账户的实现：</p>
-<p><img src="file:///C:/Users/JMhhh/AppData/Local/Temp/msohtmlclip1/01/clip_image020.jpg" alt="img"></p>
-<p>4.4     系统测试</p>
-<p>能够正常完成信用账户的借款，还款，计息，以及计算年费的操作符合设计预期。</p>
-<p><img src="file:///C:/Users/JMhhh/AppData/Local/Temp/msohtmlclip1/01/clip_image022.jpg" alt="img"></p>
-<p>4.5     体会心得</p>
-<ul>
-<li>这一版本因为增加了一个与 储蓄账户 类似的 信用账户类的需求，所以为了简化实现，同时减少代码量，设计一个共同的父类 <code>Account</code> 类来派生出需要的两个子类。</li>
-<li>此时就能十分明显的显示出面向对象编程设计软件在需求变更时的好处，开发者在更新时，只需要不断地增加新的功能模块，不用重构之前的内容，大大减小了开发的时间成本。</li>
-</ul>
-<h2 id="5-个人银行管理系统版本0-5"><a href="#5-个人银行管理系统版本0-5" class="headerlink" title="5 个人银行管理系统版本0.5"></a>5 个人银行管理系统版本0.5</h2><p>5.1     系统需求</p>
-<p>实现交互，能够通过键盘输入，进行操作。改进测试方法，使其更便于操作，改进类之间的关系，使其更便于调用。</p>
-<p>5.2     系统设计</p>
-<p>将 <code>Account</code> 设置为抽象类，将相应函数设计为抽象函数，存钱 <code>deposit（）</code>、取钱 <code>withdraw（）</code>、结算 <code>settle（）</code>。并设置<code>Account</code>类类型的数组，实现循环调用等操作。</p>
-<p>5.3     系统实现</p>
-<ul>
-<li>类类型数组 <code>accounts[] </code>定义</li>
-</ul>
-<p><img src="file:///C:/Users/JMhhh/AppData/Local/Temp/msohtmlclip1/01/clip_image024.jpg" alt="img"></p>
-<ul>
-<li>循环交互实现</li>
-</ul>
-<p><img src="file:///C:/Users/JMhhh/AppData/Local/Temp/msohtmlclip1/01/clip_image026.jpg" alt="img"></p>
-<ul>
-<li>父类<code>Account</code>的抽象函数</li>
-</ul>
-<p><img src="file:///C:/Users/JMhhh/AppData/Local/Temp/msohtmlclip1/01/clip_image028.jpg" alt="img"></p>
-<ul>
-<li>子类<code> SavingsAccount</code> 储蓄账户类的实例化</li>
-</ul>
-<p><img src="file:///C:/Users/JMhhh/AppData/Local/Temp/msohtmlclip1/01/clip_image030.jpg" alt="img"></p>
-<ul>
-<li>子类 <code>CreditAccount</code> 信用账户类的实例化</li>
-</ul>
-<p><img src="file:///C:/Users/JMhhh/AppData/Local/Temp/msohtmlclip1/01/clip_image032.jpg" alt="img"></p>
-<p>5.4     系统测试</p>
-<p>交互测试，分别测试了存钱，取钱，下一个月，结算年息等等，符合设计要求。</p>
-<p><img src="file:///C:/Users/JMhhh/AppData/Local/Temp/msohtmlclip1/01/clip_image034.jpg" alt="img"></p>
-<p>5.5     体会心得</p>
-<p>能够交互的测试，使得系统更直观，更贴近实际，用户能更方便的操作该系统。类类型的数组的使用使得代码中类的循环能更方便的实现，而抽象类的运用就能够实现类类型的数组。</p>
-<h2 id="6、个人银行管理系统版本0-6"><a href="#6、个人银行管理系统版本0-6" class="headerlink" title="6、个人银行管理系统版本0.6"></a>6、个人银行管理系统版本0.6</h2><p>6.1     系统需求</p>
-<p>在上一版本中，使用父类对象数组来处理不同派生类对象，从而实现多态性调用，第六个版本中使用<code>Java</code>中自带的<code>ArrayList</code>来代替原来的对象数组，以实现动态的改变大小，添加新账户的功能。系统设计</p>
-<p>6.2     系统实现</p>
-<p>在主函数类中导入Java实用包中的<code>ArrayList</code>，创建对象数组。</p>
-<p><img src="file:///C:/Users/JMhhh/AppData/Local/Temp/msohtmlclip1/01/clip_image036.jpg" alt="img"></p>
-<p><img src="file:///C:/Users/JMhhh/AppData/Local/Temp/msohtmlclip1/01/clip_image038.jpg" alt="img"></p>
-<p>6.3     系统测试</p>
-<p><img src="file:///C:/Users/JMhhh/AppData/Local/Temp/msohtmlclip1/01/clip_image040.jpg" alt="img"></p>
-<p>6.4     体会心得</p>
-<p>相较于<code>C++</code>，<code>Java</code>提供了现成的包 <code>ArrayList</code> 不需要单独写，同时，<code>Java</code>也不支持重载。相较于上一个版本，能够更便捷的统一管理它的子类，代码能够更便捷。</p>
-<h1 id="三、课程设计总结"><a href="#三、课程设计总结" class="headerlink" title="三、课程设计总结"></a>三、课程设计总结</h1><h2 id="1、最终实现功能："><a href="#1、最终实现功能：" class="headerlink" title="1、最终实现功能："></a>1、最终实现功能：</h2><p>日期计算功能、日期累加功能</p>
-<p>储蓄账户 <code>SavingsAccount</code>（基本的账户信息的存储、按日期产生的利息）</p>
-<p>信用账户 <code>CreditAccount</code>（基本的信用账户信息的存储、按日期产生的欠款金额、信用额度、年费）。</p>
-<h2 id="2、Java特性"><a href="#2、Java特性" class="headerlink" title="2、Java特性"></a>2、Java特性</h2><p>1.1封装:</p>
-<p>对于系统的每一个功能，如<code>Account</code>、<code>Date</code>、<code>SavingsAccount</code>、<code>CreditAccount</code>等功能都是用类实现的，其中每一个类中需要和外界通讯的数据成员、成员方法先定义了具体的权限，如public、protect等，而无需通讯的私有成员则为private，使得最后的各功能只提供一些接口参数，而不是具体的实现细节，使用（调用）者无需关心其内部的实现便可实现自己的功能。</p>
-<p>1.2继承:</p>
-<p>该系统设计了一个各账户共同的父类： <code>Account</code> ， 其他两个账户类都是由此继承出，他们有一些共同的方法、数据成员由父类实现（或声明），而其不同则由自己声明实现。</p>
-<p>1.3多态:</p>
-<p>对于一些子类继承自父类的数据成员，成员方法，他们中的一些的实现与父类略有不同，覆盖了原父类的内容，使得最后同一个方法有多种实现以供用户不同的需求。</p>
-<h2 id="3、问题及解决方法："><a href="#3、问题及解决方法：" class="headerlink" title="3、问题及解决方法："></a>3、问题及解决方法：</h2><p>3.1关于运算符重载：<code>C++</code>中有运算符重载的功能，可以简单的实现两个类之间逻辑上的四则运算，通过查阅资料后得知Java中取消了运算符重载的功能，统一使用方法调用来代替原有功能。</p>
-<p>3.2文档及注释：通过搜索别人博客了解到<code>Java</code>可以通过一些具体的语法格式进行注释，之后便可自动生成文档。</p>
-<p>3.3工程规范性：一开始不能很清楚的理解<code>Java</code>的文件结构，新建了很多工程，文件混乱，后学习发现，应该在一个工作环境中新建不同的包。</p>
-<p>3.4数学函数：使用某些数学公式时，<code>C++</code>需要写<code>cmath</code>的头文件，而<code>JAVA</code>则直接用<code>Math</code>即可。</p>
-<p>3.5父类与子类：在使用父类引用指向子类对象的时候，要注意只能调用子类从父类继承过来的方法，如果要调用子类特有方法，需要向下转型。</p>
-<p>3.6修改第五版，交互问题的时候，许多输入输出上格式的错误，对照<code>C++</code>的输出从类的<code>show（）</code>函数一点点修改，其中经过断点调试发现，<code>System.in.read()</code>读入了换行符<code>‘\n’</code>,使得显示用户信息后，输出两遍<code>‘commend&gt;’</code>,将输入修改为<code>cmd = in.next().charAt(0)</code>后，输入输出正确。</p>
-<h2 id="4、收获："><a href="#4、收获：" class="headerlink" title="4、收获："></a>4、收获：</h2><p>​		这个银行管理系统的完成让我熟悉了<code>Java</code>的基本语法，同时体会到了<code>Java</code>与<code>c++</code>的不同的程序设计思想；在完成项目的同时遇到了很多的问题，但是都通过自己独立查阅资料逐一解决。了解到Java作为面向对象编程的语言实现项目代码时更具有工程规范性。实验报告的书写也使我清晰的认识到了一个简单项目从用户需求到系统设计、系统实现及最后的代码的编写测试这一个流程，最后的代码间的联系从而更加地清晰明了。</p>
-<p>​		此外通过每一版本的需求的更新以及系统的实现，我体会到了面向对象程序设计在实现功能的过程与面向过程以及<code>C++</code>面向对象程序设计的不同，<code>Java</code>中万物皆为类的思想牢牢印在我的心中，即使和<code>C++</code>主函数同意义的<code>Main</code>方法一样也是类，从最开始的一个储蓄活期账户的功能的实现，<code>date</code>类的实现以及累加日期类的实现，从而实现了系统的基本功能，此后新增活期账户功能类似的信用账户的需求，通过比较两个类的共同特点，抽象出其共同的父类<code>Account</code>，这样使得一些共同点得以复用，减少代码量的同时也使得各类之间的关系增强，同时在最后几个版本中，因为<code>Java</code>中父类的引用同时可以引用其子类的特点，使得通过一个父类的对象数组便可以轻易的操纵其子类，使得最后的循环处理测试时的代码可以有不同类对应不同操作代码合二为一，大大的使程序的可读性增强，代码量减少，开发的负担也减轻许多，最后的<code>ArrayList</code>声明的对象数组也使得开发者不必关心数组空间的分配问题，从而使程序的安全性增强。</p>
-<p>​		<code>Java</code>的工程设计结构，能够十分方便的不断扩展功能模块，所以需要设计者在设计时，需要有清晰的思路，有一定的预见性，给程序设计足够的修改，进步空间。也了解到了几个<code>Java</code>设计的基本原则，其中印象深刻的有，开闭原则：在程序需要进行拓展的时候，不能去修改原有的代码，实现一个热插拔的效果。简言之，是为了使程序的扩展性好，易于维护和升级。而抽象化是开闭原则的关键。想要达到这样的效果，我们需要使用接口和抽象类。该项目中，就是<code>Account</code>及其子类的关系。以及单一职责原则：定义：类的职责要单一，不能将太多的职责放在一个类中，因为一个类职责越多，被复用的可能性越小，粒度越小越可能被复用。单一原则是针对实现类的设计模式。比如<code>Date</code>类和<code>Accumulate</code> 类，都是单独实现一个小的功能。</p>
-<p>​		最后，这个项目虽然是修改，代码量并不多，但是真真正正第一次体会了一个小的系统，功能很少的系统，是如何一步步不断完善，有越来越多的功能，越来越庞大。</p>
+          
+      
+    </div>
 
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://0jmins0.github.io/Jmins0.github.io/2022/10/14/Java%E9%93%B6%E8%A1%8C%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%9E%E9%AA%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Jmins0.github.io/images/wm.gif">
+      <meta itemprop="name" content="HiHi">
+      <meta itemprop="description" content="欢迎来到我的小站！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HiHi 的 Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Jmins0.github.io/2022/10/14/Java%E9%93%B6%E8%A1%8C%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%9E%E9%AA%8C/" class="post-title-link" itemprop="url">JAVA个人银行账户管理系统课程设计报告</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-10-14 14:05:42 / 修改时间：15:14:47" itemprop="dateCreated datePublished" datetime="2022-10-14T14:05:42+08:00">2022-10-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Jmins0.github.io/categories/learn/" itemprop="url" rel="index"><span itemprop="name">learn</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/Jmins0.github.io/2022/10/14/Java%E9%93%B6%E8%A1%8C%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%9E%E9%AA%8C/" class="post-meta-item leancloud_visitors" data-flag-title="JAVA个人银行账户管理系统课程设计报告" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="一、课程设计要求与目的"><a href="#一、课程设计要求与目的" class="headerlink" title="一、课程设计要求与目的"></a>一、课程设计要求与目的</h1><ol>
+<li>模仿个人银行账户管理系统的C++版本（第4章-第9章），使用Java语言重新实现该系统，比较C++与Java在实现上的异同，熟练掌握Java基础及语法。</li>
+<li>根据业务需求的增加，对个人银行账户管理系统进行功能上的完善，利用面向对象的思想对代码进行重构，体会抽象、封装、继承、多态等特性在实际系统中的应用，掌握构造可复用、可扩展、可维护软件的基本技能。</li>
+</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Jmins0.github.io/2022/10/14/Java%E9%93%B6%E8%A1%8C%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%9E%E9%AA%8C/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -576,7 +500,7 @@
 </ol>
 <ul>
 <li><p>报错：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">unable</span> <span class="string">to</span> <span class="string">access</span> <span class="attr">&#x27;https://github.com/0Jmins0/Jmins0.github.io.git/&#x27;:</span> <span class="attr">Failed to connect to 127.0.0.1 port 7890 after 2069 ms:</span> <span class="string">Connection</span> <span class="string">refuse`</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">unable</span> <span class="string">to</span> <span class="string">access</span> <span class="attr">&#x27;https://github.com/0Jmins0/Jmins0.github.io.git/&#x27;:</span> <span class="attr">Failed to connect to 127.0.0.1 port 7890 after 2069 ms:</span> <span class="string">Connection</span> <span class="string">refuse`</span></span><br></pre></td></tr></table></figure></li></ul>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/Jmins0.github.io/2022/09/19/BUG/#more" rel="contents">
@@ -1120,7 +1044,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/Jmins0.github.io/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1129,7 +1053,7 @@
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
