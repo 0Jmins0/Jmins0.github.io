@@ -27,17 +27,17 @@
 <meta property="og:site_name" content="HiHi 的 Blog">
 <meta property="og:description" content="课后习题第01章  语言概述 谈谈你过去学习编程语言的方法、经验和教训。 学习过C++和Python， 基本方法是学习简单语法，尝试做简单的题目，这样能够很快的熟悉一门语言。而后在尝试写一些简答的项目，比如Python的爬虫数据分析等。  高级语言的编译型和解释型语言的编译执行过程有什么区别？ 高级语言编译一次性全部编译成机器码，解释性是一句一句转成机器码。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://0jmins0.github.io/Jmins0.github.io/2022/09/19/Java/Github/Blog_hexo/source_posts/Java/1.jpg">
-<meta property="og:image" content="https://0jmins0.github.io/Jmins0.github.io/2022/09/19/Java/Github/Blog_hexo/source_posts/Java/2.jpg">
-<meta property="og:image" content="https://0jmins0.github.io/Jmins0.github.io/2022/09/19/Java/Github/Blog_hexo/source_posts/Java/3.jpg">
-<meta property="og:image" content="https://0jmins0.github.io/Jmins0.github.io/2022/09/19/Java/Github/Blog_hexo/source_posts/Java/4.jpg">
+<meta property="og:image" content="https://0jmins0.github.io/Jmins0.github.io/2022/09/19/Java/1.jpg">
+<meta property="og:image" content="https://0jmins0.github.io/Jmins0.github.io/2022/09/19/Java/2.jpg">
+<meta property="og:image" content="https://0jmins0.github.io/Jmins0.github.io/2022/09/19/Java/3.jpg">
+<meta property="og:image" content="https://0jmins0.github.io/Jmins0.github.io/2022/09/19/Java/4.jpg">
 <meta property="article:published_time" content="2022-09-19T08:18:59.751Z">
-<meta property="article:modified_time" content="2022-11-25T07:48:23.807Z">
+<meta property="article:modified_time" content="2022-11-25T07:53:05.455Z">
 <meta property="article:author" content="HiHi">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="course">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://0jmins0.github.io/Jmins0.github.io/2022/09/19/Java/Github/Blog_hexo/source_posts/Java/1.jpg">
+<meta name="twitter:image" content="https://0jmins0.github.io/Jmins0.github.io/2022/09/19/Java/1.jpg">
 
 <link rel="canonical" href="https://0jmins0.github.io/Jmins0.github.io/2022/09/19/Java/">
 
@@ -234,7 +234,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-25 15:48:23" itemprop="dateModified" datetime="2022-11-25T15:48:23+08:00">2022-11-25</time>
+                <time title="修改时间：2022-11-25 15:53:05" itemprop="dateModified" datetime="2022-11-25T15:53:05+08:00">2022-11-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -649,7 +649,7 @@
 <li><p><code>String</code> 对象的特点</p>
 <ul>
 <li><p>String对象是不可变的，在String类中每一个看起来会修改String对象内容的方法，实质都是创建了一个全新的String对象。</p>
-<p><img src="Github\Blog_hexo\source_posts\Java\1.jpg"></p>
+<p><img src="1.jpg"></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">class</span> <span class="title class_">String</span>   <span class="keyword">implements</span> <span class="title class_">java</span>.io.Serializable, Comparable&lt;String&gt;, CharSequence &#123;</span><br><span class="line"><span class="comment">/** The value is used for character storage. */</span></span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">final</span> <span class="type">char</span>[] value; <span class="comment">//常量字符数组对象引用</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">concat</span><span class="params">(String str)</span> &#123;<span class="comment">//字符串连接</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">otherLen</span> <span class="operator">=</span> str.length();</span><br><span class="line">    <span class="keyword">if</span> (otherLen == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>;<span class="comment">//返回当前对象</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> value.length;</span><br><span class="line">    <span class="type">char</span>[] buf = Arrays.copyOf(value, len + otherLen);<span class="comment">//拷贝之前的</span></span><br><span class="line">    str.getChars(buf, len);<span class="comment">//连接现在的</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">String</span>(buf, <span class="literal">true</span>); <span class="comment">//创建新的对象</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><code>StringBuffer</code> : <code>StringBuffer</code> 对象的值是可变的，对字符串的增加、插入、修改、删除等操作比String高效（不需多次创建新的对象）。</p>
@@ -703,15 +703,15 @@
 <ul>
 <li><p>死锁问题（dead lock）</p>
 <p>如果多个线程都处于等待状态，彼此需要对方所占用的监视器所有权，就构成死锁，Java即不能发现也不能避免死锁。</p>
-<p><img src="Github\Blog_hexo\source_posts\Java\2.jpg"></p>
-<p><img src="Github\Blog_hexo\source_posts\Java\3.jpg"></p>
+<p><img src="2.jpg"></p>
+<p><img src="3.jpg"></p>
 </li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-<h3 id="线程同步通信（协作）"><a href="#线程同步通信（协作）" class="headerlink" title="线程同步通信（协作）"></a>线程同步通信（协作）</h3><h1 id="第十章-I-x2F-O输入输出"><a href="#第十章-I-x2F-O输入输出" class="headerlink" title="第十章 I&#x2F;O输入输出"></a>第十章 I&#x2F;O输入输出</h1><h2 id="流的分类"><a href="#流的分类" class="headerlink" title="流的分类"></a>流的分类</h2><h2 id="字节流与字符流"><a href="#字节流与字符流" class="headerlink" title="字节流与字符流"></a>字节流与字符流</h2><p><img src="Github\Blog_hexo\source_posts\Java\4.jpg" alt="PNG image.png"></p>
+<h3 id="线程同步通信（协作）"><a href="#线程同步通信（协作）" class="headerlink" title="线程同步通信（协作）"></a>线程同步通信（协作）</h3><h1 id="第十章-I-x2F-O输入输出"><a href="#第十章-I-x2F-O输入输出" class="headerlink" title="第十章 I&#x2F;O输入输出"></a>第十章 I&#x2F;O输入输出</h1><h2 id="流的分类"><a href="#流的分类" class="headerlink" title="流的分类"></a>流的分类</h2><h2 id="字节流与字符流"><a href="#字节流与字符流" class="headerlink" title="字节流与字符流"></a>字节流与字符流</h2><p><img src="4.jpg" alt="PNG image.png"></p>
 <h2 id="流的装配与序列化"><a href="#流的装配与序列化" class="headerlink" title="流的装配与序列化"></a>流的装配与序列化</h2><h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2>
     </div>
 
