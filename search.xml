@@ -31,6 +31,26 @@
       </tags>
   </entry>
   <entry>
+    <title>Hello Blog!</title>
+    <url>/Jmins0.github.io/2022/07/28/Hello_Blog/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><p><em>斜体</em></p>
+<p><strong>粗体文字</strong></p>
+<p><em><strong>粗斜体</strong></em></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;Hello Blog!&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>others</category>
+      </categories>
+      <tags>
+        <tag>start</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>DP 刷题</title>
     <url>/Jmins0.github.io/2022/07/29/DP/</url>
     <content><![CDATA[<h1 id="01背包"><a href="#01背包" class="headerlink" title="01背包"></a>01背包</h1><h2 id="Task-Computing"><a href="#Task-Computing" class="headerlink" title="Task Computing"></a><strong>Task Computing</strong></h2><span id="more"></span>
@@ -102,26 +122,6 @@
         <tag>C++</tag>
         <tag>算法</tag>
         <tag>DP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello Blog!</title>
-    <url>/Jmins0.github.io/2022/07/28/Hello_Blog/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><p><em>斜体</em></p>
-<p><strong>粗体文字</strong></p>
-<p><em><strong>粗斜体</strong></em></p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;Hello Blog!&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-]]></content>
-      <categories>
-        <category>others</category>
-      </categories>
-      <tags>
-        <tag>start</tag>
       </tags>
   </entry>
   <entry>
@@ -571,132 +571,6 @@
       </tags>
   </entry>
   <entry>
-    <title>hexo Blog搭建</title>
-    <url>/Jmins0.github.io/2022/09/15/blog_learn/</url>
-    <content><![CDATA[<h3 id="hexo基本操作"><a href="#hexo基本操作" class="headerlink" title="hexo基本操作"></a>hexo基本操作</h3><span id="more"></span>
-
-<ul>
-<li>$ hexo \ c –&gt; hexo\ clean $ 清空缓存</li>
-<li>$ hexo\ g –&gt; hexo\ generate $  生成网站静态文件到默认设置的public文件夹</li>
-<li>$ hexo\ d –&gt; hexo\ deploy$  自动生成网站静态文件，并部署到设定仓库</li>
-<li>$ hexo\ s –&gt; hexo\ server $ 启动本地服务器</li>
-</ul>
-<h3 id="主题配置"><a href="#主题配置" class="headerlink" title="主题配置"></a>主题配置</h3><ol>
-<li><p>下载主题文件到  <code>themes</code> 文件夹 </p>
-</li>
-<li><p>修改站点配置文件 <code> _config.yml</code>   </p>
-<p>找到 $ themes $ 这一行，修改为对应主体名字</p>
-<p><img src="1.png" alt="image"></p>
-</li>
-</ol>
-<h3 id="部署网站"><a href="#部署网站" class="headerlink" title="部署网站"></a>部署网站</h3><ol>
-<li><p>修改站点配置文件 <code> _config.yml</code></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment">#配置部署</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span>  <span class="string">git</span> <span class="comment"># 规定</span></span><br><span class="line">  <span class="attr">repository:</span>  <span class="string">https://github.com/0Jmins0/Jmins0.github.io.git</span> <span class="comment">#仓库地址</span></span><br><span class="line">  <span class="attr">branch:</span>  <span class="string">main</span> <span class="comment">#规定</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment">#配置url(否则部署到github上会显示不出来主题)</span></span><br><span class="line"><span class="attr">url:</span>  <span class="string">https://0jmins0.github.io/Jmins0.github.io</span></span><br><span class="line"><span class="attr">root:</span>  <span class="string">/Jmins0.github.io/</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>根目录 $ hexo\ g + hexo\ d$ 部署到网站</p>
-</li>
-</ol>
-<h3 id="加入数学插件"><a href="#加入数学插件" class="headerlink" title="加入数学插件"></a>加入数学插件</h3><ol>
-<li><p>下载  <code>mathjax</code></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">npm</span> <span class="string">install</span> <span class="string">hexo-math</span> <span class="string">--save</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>修改主题中的配置文件 <code>_config.yml</code> </p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">per_page:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在文章中打开 <code>mathjax</code> 开关</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: hello word</span><br><span class="line"><span class="section">mathjax: true</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="设置头像"><a href="#设置头像" class="headerlink" title="设置头像"></a>设置头像</h3><ol>
-<li>在主题配置文件 <code>_confid.yml</code>中 找到 <code>avatar</code> 去掉注释启用</li>
-<li><code>round</code> 设置为 <code>true</code> ——&gt; 圆形头像</li>
-<li>将 <code>next/images/avatar.gif</code> 替换为个人头像</li>
-</ol>
-<h3 id="设置标题、作者、连接"><a href="#设置标题、作者、连接" class="headerlink" title="设置标题、作者、连接"></a>设置标题、作者、连接</h3><p>打开根目录的配置文件，位置如下：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">title:</span> <span class="string">HiHi</span> <span class="string">的</span> <span class="string">Blog</span> <span class="comment">#标题</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">&#x27;&#x27;</span> <span class="comment">#副标题 </span></span><br><span class="line"><span class="attr">description:</span> <span class="string">&#x27;欢迎来到我的小站！&#x27;</span> <span class="comment">#描述</span></span><br><span class="line"><span class="attr">keywords:</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">HiHi</span> <span class="comment"># 作者</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">zh-CN</span> <span class="comment">#语言</span></span><br><span class="line"><span class="attr">timezone:</span> <span class="string">&#x27;&#x27;</span> <span class="comment"># 时区</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="设置侧边栏社交链接"><a href="#设置侧边栏社交链接" class="headerlink" title="设置侧边栏社交链接"></a>设置侧边栏社交链接</h3><p>打开主题配置文件，将相应连接启用</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Social Links</span></span><br><span class="line"><span class="comment"># Usage: `Key: permalink || icon`</span></span><br><span class="line"><span class="comment"># Key is the link label showing to end users.</span></span><br><span class="line"><span class="comment"># Value before `||` delimiter is the target permalink, value after `||` delimiter is the name of Font Awesome icon.</span></span><br><span class="line"><span class="attr">social:</span></span><br><span class="line">  <span class="attr">GitHub:</span> <span class="string">https://github.com/0Jmins0/Jmins0.github.io</span> <span class="string">||</span> <span class="string">fab</span> <span class="string">fa-github</span></span><br><span class="line">  <span class="attr">E-Mail:</span> <span class="number">3234252073</span><span class="string">@qq.com</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-envelope</span></span><br><span class="line">  <span class="comment">#Weibo: https://weibo.com/yourname || fab fa-weibo</span></span><br><span class="line">  <span class="comment">#Google: https://plus.google.com/yourname || fab fa-google</span></span><br><span class="line">  <span class="attr">Twitter:</span> <span class="string">https://twitter.com/yourname</span> <span class="string">||</span> <span class="string">fab</span> <span class="string">fa-twitter</span></span><br><span class="line">  <span class="comment">#FB Page: https://www.facebook.com/yourname || fab fa-facebook</span></span><br><span class="line">  <span class="comment">#StackOverflow: https://stackoverflow.com/yourname || fab fa-stack-overflow</span></span><br><span class="line">  <span class="comment">#YouTube: https://youtube.com/yourname || fab fa-youtube</span></span><br><span class="line">  <span class="comment">#Instagram: https://instagram.com/yourname || fab fa-instagram</span></span><br><span class="line">  <span class="comment">#Skype: skype:yourname?call|chat || fab fa-skype</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="首页设置阅读全文"><a href="#首页设置阅读全文" class="headerlink" title="首页设置阅读全文"></a>首页设置阅读全文</h3><p>方法一：在主题配置文件搜索<code>auto_except</code> ，将 <code>enable</code> 改为 <code>true</code> 。</p>
-<p>方法二：在文章中间添加 <code>&lt;!--more--&gt;</code>，则语句前面显示在预览中。</p>
-<h3 id="添加动态背景"><a href="#添加动态背景" class="headerlink" title="添加动态背景"></a>添加动态背景</h3><ol>
-<li><p>打开主题配置文件，搜索<code>canvas</code> 找到 <code>3D library</code></p>
-</li>
-<li><p>下载需要的依赖，到 <code>next/source/lib</code> 文件夹，并改名为 <code>three</code></p>
-</li>
-<li><p>下载依赖<code>https://github.com/theme-next/theme-next-canvas-nest</code>改名为<code>canvas-nest</code></p>
-</li>
-<li><p>修改主题配置文件</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># JavaScript 3D library.</span></span><br><span class="line"><span class="comment"># Dependencies: https://github.com/theme-next/theme-next-three</span></span><br><span class="line"><span class="attr">three:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">three_waves:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">canvas_lines:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">canvas_sphere:</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="attr">canvas_nest:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="添加评论功能"><a href="#添加评论功能" class="headerlink" title="添加评论功能"></a>添加评论功能</h3><ol>
-<li><p>登录 <code>leanCloud</code> ，并创建 <code>APP</code>。</p>
-</li>
-<li><p>找到  <code>数据存储——结构化数据</code> 创建<code>Class</code> 命名为<code>Comment</code></p>
-</li>
-<li><p>找到<code>设置-应用凭证</code> 分别复制<code>AppID</code> <code>AppKey</code>到配置</p>
-</li>
-<li><p>修改主题配置</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Valine</span></span><br><span class="line"><span class="comment"># For more information: https://valine.js.org, https://github.com/xCss/Valine</span></span><br><span class="line"><span class="attr">valine:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">appid:</span> <span class="string">w0hgFFpgYXDb0kYsJiqe3NCG-gzGzoHsz</span></span><br><span class="line">  <span class="attr">appkey:</span> <span class="string">T65gVRVHNmIpYFP6QAUXbWB8</span></span><br><span class="line">  <span class="attr">notify:</span> <span class="literal">false</span> <span class="comment"># Mail notifier</span></span><br><span class="line">  <span class="attr">verify:</span> <span class="literal">false</span> <span class="comment"># Verification code</span></span><br><span class="line">  <span class="attr">placeholder:</span> <span class="string">Just</span> <span class="string">go</span> <span class="string">go</span> <span class="comment"># Comment box placeholder</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">mm</span> <span class="comment"># Gravatar style</span></span><br><span class="line">  <span class="attr">guest_info:</span> <span class="string">nick,mail,link</span> <span class="comment"># Custom comment header</span></span><br><span class="line">  <span class="attr">pageSize:</span> <span class="number">10</span> <span class="comment"># Pagination size</span></span><br><span class="line">  <span class="attr">language:</span> <span class="comment"># Language, available values: en, zh-cn</span></span><br><span class="line">  <span class="attr">visitor:</span> <span class="literal">true</span> <span class="comment"># Article reading statistic</span></span><br><span class="line">  <span class="attr">comment_count:</span> <span class="literal">false</span> <span class="comment"># If false, comment count will only be displayed in post page, not in home page</span></span><br><span class="line">  <span class="attr">recordIP:</span> <span class="literal">false</span> <span class="comment"># Whether to record the commenter IP</span></span><br><span class="line">  <span class="attr">serverURLs:</span> <span class="comment"># When the custom domain name is enabled, fill it in here (it will be detected automatically by default, no need to fill in)</span></span><br><span class="line">  <span class="comment">#post_meta_order: 0</span></span><br></pre></td></tr></table></figure>
-
-</li>
-<li><p>只在文章界面设置评论功能，关闭标签页等页面的评论功能</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">comments:</span> <span class="literal">false</span><span class="string">//加在对应页面</span> <span class="string">.md文件的front</span> <span class="string">matter中</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="添加搜索功能"><a href="#添加搜索功能" class="headerlink" title="添加搜索功能"></a>添加搜索功能</h3><h3 id="添加插入图片功能"><a href="#添加插入图片功能" class="headerlink" title="添加插入图片功能"></a>添加插入图片功能</h3><ol>
-<li><p>在博客根目录 <code>_config.yml</code>中，修改 <code>post_asset_folder:false</code>为 <code>true</code></p>
-</li>
-<li><p>在博客根目录打开 <code>git bash here</code> 下载 ：<code>npm install hexo-asseet-image --save</code></p>
-</li>
-<li><p>修改插件</p>
-<ul>
-<li>路径：根目录 –&gt;<code>node_modules</code> –&gt; <code>hexo-asset-image</code> –&gt;<code>index.js</code></li>
-<li>第58行，修改<ul>
-<li><code>$(this).attr(&#39;src&#39;, config.root + link + src);</code></li>
-<li>改成<code>$(this).attr(&#39;src&#39;, src);</code></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>在和文章并列的地方新建和文章同名的文件夹，并在里面存放要引用的照片</p>
-</li>
-<li><p>引用方法：<code>![标注](test.jpg)</code></p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>learn</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello hexo</title>
-    <url>/Jmins0.github.io/2022/09/14/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<span id="more"></span>
-
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-      <tags>
-        <tag>start</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JAVA个人银行账户管理系统课程设计报告</title>
     <url>/Jmins0.github.io/2022/10/14/Java%E9%93%B6%E8%A1%8C%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%9E%E9%AA%8C/</url>
     <content><![CDATA[<h1 id="一、课程设计要求与目的"><a href="#一、课程设计要求与目的" class="headerlink" title="一、课程设计要求与目的"></a>一、课程设计要求与目的</h1><ol>
@@ -868,6 +742,132 @@
         <tag>Java</tag>
         <tag>course</tag>
         <tag>report</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo Blog搭建</title>
+    <url>/Jmins0.github.io/2022/09/15/blog_learn/</url>
+    <content><![CDATA[<h3 id="hexo基本操作"><a href="#hexo基本操作" class="headerlink" title="hexo基本操作"></a>hexo基本操作</h3><span id="more"></span>
+
+<ul>
+<li>$ hexo \ c –&gt; hexo\ clean $ 清空缓存</li>
+<li>$ hexo\ g –&gt; hexo\ generate $  生成网站静态文件到默认设置的public文件夹</li>
+<li>$ hexo\ d –&gt; hexo\ deploy$  自动生成网站静态文件，并部署到设定仓库</li>
+<li>$ hexo\ s –&gt; hexo\ server $ 启动本地服务器</li>
+</ul>
+<h3 id="主题配置"><a href="#主题配置" class="headerlink" title="主题配置"></a>主题配置</h3><ol>
+<li><p>下载主题文件到  <code>themes</code> 文件夹 </p>
+</li>
+<li><p>修改站点配置文件 <code> _config.yml</code>   </p>
+<p>找到 $ themes $ 这一行，修改为对应主体名字</p>
+<p><img src="1.png" alt="image"></p>
+</li>
+</ol>
+<h3 id="部署网站"><a href="#部署网站" class="headerlink" title="部署网站"></a>部署网站</h3><ol>
+<li><p>修改站点配置文件 <code> _config.yml</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment">#配置部署</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span>  <span class="string">git</span> <span class="comment"># 规定</span></span><br><span class="line">  <span class="attr">repository:</span>  <span class="string">https://github.com/0Jmins0/Jmins0.github.io.git</span> <span class="comment">#仓库地址</span></span><br><span class="line">  <span class="attr">branch:</span>  <span class="string">main</span> <span class="comment">#规定</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment">#配置url(否则部署到github上会显示不出来主题)</span></span><br><span class="line"><span class="attr">url:</span>  <span class="string">https://0jmins0.github.io/Jmins0.github.io</span></span><br><span class="line"><span class="attr">root:</span>  <span class="string">/Jmins0.github.io/</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>根目录 $ hexo\ g + hexo\ d$ 部署到网站</p>
+</li>
+</ol>
+<h3 id="加入数学插件"><a href="#加入数学插件" class="headerlink" title="加入数学插件"></a>加入数学插件</h3><ol>
+<li><p>下载  <code>mathjax</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">npm</span> <span class="string">install</span> <span class="string">hexo-math</span> <span class="string">--save</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改主题中的配置文件 <code>_config.yml</code> </p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">per_page:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在文章中打开 <code>mathjax</code> 开关</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: hello word</span><br><span class="line"><span class="section">mathjax: true</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="设置头像"><a href="#设置头像" class="headerlink" title="设置头像"></a>设置头像</h3><ol>
+<li>在主题配置文件 <code>_confid.yml</code>中 找到 <code>avatar</code> 去掉注释启用</li>
+<li><code>round</code> 设置为 <code>true</code> ——&gt; 圆形头像</li>
+<li>将 <code>next/images/avatar.gif</code> 替换为个人头像</li>
+</ol>
+<h3 id="设置标题、作者、连接"><a href="#设置标题、作者、连接" class="headerlink" title="设置标题、作者、连接"></a>设置标题、作者、连接</h3><p>打开根目录的配置文件，位置如下：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">title:</span> <span class="string">HiHi</span> <span class="string">的</span> <span class="string">Blog</span> <span class="comment">#标题</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">&#x27;&#x27;</span> <span class="comment">#副标题 </span></span><br><span class="line"><span class="attr">description:</span> <span class="string">&#x27;欢迎来到我的小站！&#x27;</span> <span class="comment">#描述</span></span><br><span class="line"><span class="attr">keywords:</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">HiHi</span> <span class="comment"># 作者</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">zh-CN</span> <span class="comment">#语言</span></span><br><span class="line"><span class="attr">timezone:</span> <span class="string">&#x27;&#x27;</span> <span class="comment"># 时区</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="设置侧边栏社交链接"><a href="#设置侧边栏社交链接" class="headerlink" title="设置侧边栏社交链接"></a>设置侧边栏社交链接</h3><p>打开主题配置文件，将相应连接启用</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Social Links</span></span><br><span class="line"><span class="comment"># Usage: `Key: permalink || icon`</span></span><br><span class="line"><span class="comment"># Key is the link label showing to end users.</span></span><br><span class="line"><span class="comment"># Value before `||` delimiter is the target permalink, value after `||` delimiter is the name of Font Awesome icon.</span></span><br><span class="line"><span class="attr">social:</span></span><br><span class="line">  <span class="attr">GitHub:</span> <span class="string">https://github.com/0Jmins0/Jmins0.github.io</span> <span class="string">||</span> <span class="string">fab</span> <span class="string">fa-github</span></span><br><span class="line">  <span class="attr">E-Mail:</span> <span class="number">3234252073</span><span class="string">@qq.com</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-envelope</span></span><br><span class="line">  <span class="comment">#Weibo: https://weibo.com/yourname || fab fa-weibo</span></span><br><span class="line">  <span class="comment">#Google: https://plus.google.com/yourname || fab fa-google</span></span><br><span class="line">  <span class="attr">Twitter:</span> <span class="string">https://twitter.com/yourname</span> <span class="string">||</span> <span class="string">fab</span> <span class="string">fa-twitter</span></span><br><span class="line">  <span class="comment">#FB Page: https://www.facebook.com/yourname || fab fa-facebook</span></span><br><span class="line">  <span class="comment">#StackOverflow: https://stackoverflow.com/yourname || fab fa-stack-overflow</span></span><br><span class="line">  <span class="comment">#YouTube: https://youtube.com/yourname || fab fa-youtube</span></span><br><span class="line">  <span class="comment">#Instagram: https://instagram.com/yourname || fab fa-instagram</span></span><br><span class="line">  <span class="comment">#Skype: skype:yourname?call|chat || fab fa-skype</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="首页设置阅读全文"><a href="#首页设置阅读全文" class="headerlink" title="首页设置阅读全文"></a>首页设置阅读全文</h3><p>方法一：在主题配置文件搜索<code>auto_except</code> ，将 <code>enable</code> 改为 <code>true</code> 。</p>
+<p>方法二：在文章中间添加 <code>&lt;!--more--&gt;</code>，则语句前面显示在预览中。</p>
+<h3 id="添加动态背景"><a href="#添加动态背景" class="headerlink" title="添加动态背景"></a>添加动态背景</h3><ol>
+<li><p>打开主题配置文件，搜索<code>canvas</code> 找到 <code>3D library</code></p>
+</li>
+<li><p>下载需要的依赖，到 <code>next/source/lib</code> 文件夹，并改名为 <code>three</code></p>
+</li>
+<li><p>下载依赖<code>https://github.com/theme-next/theme-next-canvas-nest</code>改名为<code>canvas-nest</code></p>
+</li>
+<li><p>修改主题配置文件</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># JavaScript 3D library.</span></span><br><span class="line"><span class="comment"># Dependencies: https://github.com/theme-next/theme-next-three</span></span><br><span class="line"><span class="attr">three:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">three_waves:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">canvas_lines:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">canvas_sphere:</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="attr">canvas_nest:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="添加评论功能"><a href="#添加评论功能" class="headerlink" title="添加评论功能"></a>添加评论功能</h3><ol>
+<li><p>登录 <code>leanCloud</code> ，并创建 <code>APP</code>。</p>
+</li>
+<li><p>找到  <code>数据存储——结构化数据</code> 创建<code>Class</code> 命名为<code>Comment</code></p>
+</li>
+<li><p>找到<code>设置-应用凭证</code> 分别复制<code>AppID</code> <code>AppKey</code>到配置</p>
+</li>
+<li><p>修改主题配置</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Valine</span></span><br><span class="line"><span class="comment"># For more information: https://valine.js.org, https://github.com/xCss/Valine</span></span><br><span class="line"><span class="attr">valine:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">appid:</span> <span class="string">w0hgFFpgYXDb0kYsJiqe3NCG-gzGzoHsz</span></span><br><span class="line">  <span class="attr">appkey:</span> <span class="string">T65gVRVHNmIpYFP6QAUXbWB8</span></span><br><span class="line">  <span class="attr">notify:</span> <span class="literal">false</span> <span class="comment"># Mail notifier</span></span><br><span class="line">  <span class="attr">verify:</span> <span class="literal">false</span> <span class="comment"># Verification code</span></span><br><span class="line">  <span class="attr">placeholder:</span> <span class="string">Just</span> <span class="string">go</span> <span class="string">go</span> <span class="comment"># Comment box placeholder</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">mm</span> <span class="comment"># Gravatar style</span></span><br><span class="line">  <span class="attr">guest_info:</span> <span class="string">nick,mail,link</span> <span class="comment"># Custom comment header</span></span><br><span class="line">  <span class="attr">pageSize:</span> <span class="number">10</span> <span class="comment"># Pagination size</span></span><br><span class="line">  <span class="attr">language:</span> <span class="comment"># Language, available values: en, zh-cn</span></span><br><span class="line">  <span class="attr">visitor:</span> <span class="literal">true</span> <span class="comment"># Article reading statistic</span></span><br><span class="line">  <span class="attr">comment_count:</span> <span class="literal">false</span> <span class="comment"># If false, comment count will only be displayed in post page, not in home page</span></span><br><span class="line">  <span class="attr">recordIP:</span> <span class="literal">false</span> <span class="comment"># Whether to record the commenter IP</span></span><br><span class="line">  <span class="attr">serverURLs:</span> <span class="comment"># When the custom domain name is enabled, fill it in here (it will be detected automatically by default, no need to fill in)</span></span><br><span class="line">  <span class="comment">#post_meta_order: 0</span></span><br></pre></td></tr></table></figure>
+
+</li>
+<li><p>只在文章界面设置评论功能，关闭标签页等页面的评论功能</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">comments:</span> <span class="literal">false</span><span class="string">//加在对应页面</span> <span class="string">.md文件的front</span> <span class="string">matter中</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="添加搜索功能"><a href="#添加搜索功能" class="headerlink" title="添加搜索功能"></a>添加搜索功能</h3><h3 id="添加插入图片功能"><a href="#添加插入图片功能" class="headerlink" title="添加插入图片功能"></a>添加插入图片功能</h3><ol>
+<li><p>在博客根目录 <code>_config.yml</code>中，修改 <code>post_asset_folder:false</code>为 <code>true</code></p>
+</li>
+<li><p>在博客根目录打开 <code>git bash here</code> 下载 ：<code>npm install hexo-asseet-image --save</code></p>
+</li>
+<li><p>修改插件</p>
+<ul>
+<li>路径：根目录 –&gt;<code>node_modules</code> –&gt; <code>hexo-asset-image</code> –&gt;<code>index.js</code></li>
+<li>第58行，修改<ul>
+<li><code>$(this).attr(&#39;src&#39;, config.root + link + src);</code></li>
+<li>改成<code>$(this).attr(&#39;src&#39;, src);</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>在和文章并列的地方新建和文章同名的文件夹，并在里面存放要引用的照片</p>
+</li>
+<li><p>引用方法：<code>![标注](test.jpg)</code></p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>learn</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello hexo</title>
+    <url>/Jmins0.github.io/2022/09/14/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<span id="more"></span>
+
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+      <tags>
+        <tag>start</tag>
       </tags>
   </entry>
   <entry>
