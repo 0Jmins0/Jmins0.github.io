@@ -22,6 +22,19 @@
 </ul>
 </li>
 </ul>
+<ol start="2">
+<li><p><code>sprint boot</code>   实现身份验证时返回 403</p>
+<ul>
+<li><p>报错</p>
+<p><code>authenticate = authenticationManager.authenticate(authenticationToken);</code></p>
+<p>一直卡在这句话，一直找验证哪里的问题，用户名或者密码的错误</p>
+</li>
+<li><p>解决</p>
+<p>验证失败也有可能是数据库方面的错误，比如<code>mysql</code>不分大小写，在 <code>pojo</code>里面写变量的时候，一定要都是小写的。</p>
+</li>
+</ul>
+</li>
+</ol>
 ]]></content>
       <categories>
         <category>learn</category>
@@ -132,7 +145,7 @@
 <p>学习过C++和Python， 基本方法是学习简单语法，尝试做简单的题目，这样能够很快的熟悉一门语言。而后在尝试写一些简答的项目，比如Python的爬虫数据分析等。</p>
 </li>
 <li><p>高级语言的编译型和解释型语言的编译执行过程有什么区别？</p>
-<p>高级语言编译一次性全部编译成机器码，解释性是一句一句转成机器码。</p>
+<p>高级语言编译一次性全部编译成机器码，解释性是一句一句转成机器码</p>
 <span id="more"></span>
 </li>
 <li><p>Java语言都有哪些特点？与C, C++, Python有何不同？</p>
@@ -162,51 +175,277 @@
 </ol>
 <h2 id="第02章-语言基础"><a href="#第02章-语言基础" class="headerlink" title="第02章  语言基础"></a>第02章  语言基础</h2><ol>
 <li><p><code>Java</code>包含哪两大类数据类型？其中基本类型的每种类型的取值范围和默认值分别是什么？请编程验证。</p>
+<ol>
+<li>基本数据类型<ol>
+<li>整数类型</li>
+<li>浮点类型</li>
+<li>字符类型</li>
+<li>布尔类型</li>
+</ol>
+</li>
+<li>引用数据类型<ol>
+<li>类类型</li>
+<li>接口类型</li>
+<li>数组类型</li>
+</ol>
+</li>
+<li>验证：</li>
+</ol>
+<p><img src="5.png"></p>
 </li>
 <li><p><code>Java</code>在什么情况会发生整型溢出？请举例说明，并给出解决方案。</p>
+<ol>
+<li>超出数据类型的范围</li>
+<li>解决方法：<ol>
+<li>换成更大范围的类型</li>
+<li>手写高精度算法</li>
+</ol>
+</li>
+</ol>
 </li>
 <li><p><code>Java</code>基本类型的包装类分别是哪些？其高频区间数据缓存范围分别是什么？请选择一种包装类型编程验证其数据缓存特性。</p>
+<table>
+<thead>
+<tr>
+<th>基本数据类型</th>
+<th>包装类</th>
+<th>字节数</th>
+<th>位数</th>
+<th>默认值</th>
+<th>数据范围</th>
+<th>高频区间数据缓存范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>byte</td>
+<td>Byte</td>
+<td>1</td>
+<td>8</td>
+<td>0</td>
+<td></td>
+<td>$[-128,127]$</td>
+</tr>
+<tr>
+<td>short</td>
+<td>Short</td>
+<td>2</td>
+<td>16</td>
+<td>0</td>
+<td>$[-32768,32767]$</td>
+<td>$[-128,127]$</td>
+</tr>
+<tr>
+<td>int</td>
+<td>Integer</td>
+<td>4</td>
+<td>32</td>
+<td>0</td>
+<td>$[-2^{31}, 2^{31}-1]$</td>
+<td>$[-128,127]$</td>
+</tr>
+<tr>
+<td>long</td>
+<td>Long</td>
+<td>8</td>
+<td>64</td>
+<td>0L</td>
+<td>$[-2^{63},2^{63}-1]$</td>
+<td>$[-128,127]$</td>
+</tr>
+<tr>
+<td>float</td>
+<td>Float</td>
+<td>4</td>
+<td>32</td>
+<td>0.0f</td>
+<td></td>
+<td>无缓存</td>
+</tr>
+<tr>
+<td>double</td>
+<td>Double</td>
+<td>8</td>
+<td>64</td>
+<td>0,0d</td>
+<td></td>
+<td>无huancub</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>Boolean</td>
+<td>1</td>
+<td>8</td>
+<td>false</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>char</td>
+<td>Character</td>
+<td>2</td>
+<td>16</td>
+<td>‘\u0000’</td>
+<td></td>
+<td>$[0,127]$</td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">Integer</span> <span class="variable">i3</span> <span class="operator">=</span> <span class="number">128</span>;</span><br><span class="line"><span class="type">Integer</span> <span class="variable">i4</span> <span class="operator">=</span> <span class="number">128</span>;</span><br><span class="line">i3 == i4 <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="type">Integer</span> <span class="variable">i3</span> <span class="operator">=</span> <span class="number">127</span>;</span><br><span class="line"><span class="type">Integer</span> <span class="variable">i4</span> <span class="operator">=</span> <span class="number">127</span>;</span><br><span class="line">i3 == i4 <span class="comment">//true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//比较指向的对象是否一致</span></span><br><span class="line"><span class="comment">//逻辑比较请用equal</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>什么是自动装箱，什么是自动拆箱，请举例说明。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Integer varInteger=<span class="number">100</span>;<span class="comment">//自动装箱</span></span><br><span class="line"><span class="comment">//等价于</span></span><br><span class="line">integer varInteger=Integer.valueOf(<span class="number">100</span>);</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> varInt=varInteger;<span class="comment">//制动拆箱</span></span><br><span class="line"><span class="comment">//等价于</span></span><br><span class="line"><span class="type">int</span> varInt=varInteger.intValue();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Integer varInteger=<span class="number">100</span>;<span class="comment">//自动装箱</span></span><br><span class="line"><span class="comment">//等价于</span></span><br><span class="line">integer varInteger=Integer.valueOf(<span class="number">100</span>);</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> varInt=varInteger;<span class="comment">//自动拆箱</span></span><br><span class="line"><span class="comment">//等价于</span></span><br><span class="line"><span class="type">int</span> varInt=varInteger.intValue();</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><code>int</code> 与 <code>Integer</code>有什么区别，它们之间的相互转化是怎样的？请通过 <code>JDK</code>文档自主学习 <code>Integer</code>类，对主要方法进行测试。</p>
+<ol>
+<li><p><code>Integer</code> 是 <code>int</code> 的包装类，默认值分别为 <code>null</code> 和 <code>0</code></p>
 </li>
-<li><p>逻辑运算符 <code>&amp;</code>和 <code>&amp;&amp;</code>的区别是什么？逻辑运算符 <code>&amp;</code>与位运算符 <code>&amp;</code>的区别是什么？请分别举例说明</p>
+<li><p><code>Integer</code> 需要实例化才可以使用， <code>int</code> 不需要。（不包括自动拆箱装箱）</p>
+</li>
+<li><p><code>int-&gt;Integer</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> a=<span class="number">66</span>; Integer A=<span class="keyword">new</span> <span class="title class_">Integer</span>(a);</span><br><span class="line"><span class="comment">//等价于</span></span><br><span class="line">Integer A=Integer.valueOf(a);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>Integer-&gt;int</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Integer A=<span class="keyword">new</span> <span class="title class_">Integer</span>(<span class="number">66</span>);</span><br><span class="line"><span class="type">int</span> a=A.intValue();</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p>逻辑运算符 <code>&amp;</code>和 <code>&amp;&amp;</code>的区别是什么？逻辑运算符 <code>&amp;</code>与位运算符 <code>&amp;</code>的区别是什么？</p>
+<ol>
+<li><code>&amp;&amp;</code> 是短路判断语句，只要前半个为错误，就不会判断后面的语句了</li>
+<li><code>&amp;</code> 会将所有语句都跑一边，看是否存在错误。</li>
+<li>两者比较， <code>&amp;&amp;</code> 更高效。</li>
+<li>作为逻辑运算符，两边为表达式</li>
+<li>作为为运算符，两边为数字</li>
+</ol>
 </li>
 <li><p><code>Java</code>语言中可以采用什么语句跳出多重循环？请举例说明</p>
 <ul>
-<li><code>break lab</code></li>
-<li><code>continue lab</code></li>
+<li><p><code>break</code> 跳出当层循环</p>
+</li>
+<li><p><code>continue</code>  跳出当次循环</p>
+</li>
+<li><p>跳回到标签位置：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">post:</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">10</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=<span class="number">10</span>;j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i+j&gt;=<span class="number">5</span>) <span class="keyword">break</span> post;</span><br><span class="line">            <span class="comment">//System.out.println(i+j);</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 <li><p>请总结 <code>Java</code>语言与 <code>C/C++</code>在基本数据类型、运算符、表达式、控制语句方面的不同。</p>
+<ol>
+<li><p>布尔常量的 <code>true false</code> 和 <code>1 0</code> 不等价，不可直接运算。</p>
 </li>
-<li><p><code>Java</code>语言中可以采用什么语句跳出多重循环？举例说明。</p>
+<li><p>字符串作为对象，有自己的方法和属性。 <code>C/C++</code> 则是 <code>\\0</code> 结束的字符数组</p>
 </li>
-<li><p>什么是自动装箱，什么自动拆箱，举例说明。</p>
+<li><p>变量未赋值有默认值，而 <code>C/C++</code> 是不确定的。</p>
+</li>
+<li><p>不支持自动强制类型转换，需手动转换。</p>
+</li>
+<li><p>有支持多线程的库， <code>C/C++</code> 需要自己写。</p>
+</li>
+<li><p>前者是先编译，后解释执行，后者是纯编译型，速度后者更快，但是移植型前者更好。</p>
+</li>
+<li><p>借鉴博客连接：</p>
+<p><a href="https://www.cnblogs.com/orange-CC/p/12298995.html">orange-C</a></p>
+</li>
+</ol>
 </li>
 </ol>
 <h2 id="第06章-继承与多态"><a href="#第06章-继承与多态" class="headerlink" title="第06章  继承与多态"></a>第06章  继承与多态</h2><ol>
-<li>实验：利用IDE的debug功能给P5示例的 <code>new</code>语句设置断点，使用单步调试 <code>（step into/step over）</code>跟踪对象实例化（初始化）的执行顺序，并总结该过程。</li>
-<li>实验：利用IDE的 <code>debug</code> 功能给P12，P13示例的 <code>new</code>语句设置断点，使用单步调试 <code>（step into/step over）</code>跟踪子类对象实例化（初始化）的执行顺序，并总结该过程。</li>
-<li>分析P7示例的程序执行过程，画出程序执行的内存布局。</li>
-<li>总结 <code>this</code> 与 <code>super</code>的用法，并举例说明。</li>
-<li>论述组合与继承的区别以及两者的使用场景（即什么时候宜用组合？什么时候宜用继承？）</li>
-<li><code>Java</code>中的运行时多态的含义是什么？通常在什么场景下应用，请举例说明。</li>
-<li>使用接口改写例6.8中的程序。</li>
-<li>论述抽象类与接口的异同以及两者的使用场景。</li>
-<li>论述内部类的定义和作用以及匿名内部类的使用。</li>
+<li><p>实验：利用IDE的debug功能给P5示例的 <code>new</code>语句设置断点，使用单步调试 <code>（step into/step over）</code>跟踪对象实例化（初始化）的执行顺序，并总结该过程。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">AddClass</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> x=<span class="number">0</span>,y=<span class="number">0</span>,z=<span class="number">0</span>;</span><br><span class="line">    AddClass (<span class="type">int</span> x) &#123;<span class="built_in">this</span>.x = x;&#125;</span><br><span class="line">    AddClass (<span class="type">int</span> x,<span class="type">int</span> y) &#123;<span class="built_in">this</span>(x);<span class="built_in">this</span>.y = y;&#125;</span><br><span class="line">    AddClass (<span class="type">int</span> x,<span class="type">int</span> y,<span class="type">int</span> z) &#123; <span class="built_in">this</span>(x,y); <span class="built_in">this</span>.z = z; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">add</span><span class="params">()</span> &#123;<span class="keyword">return</span> x+y+z;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RunAddClass</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        AddClass p1=<span class="keyword">new</span> <span class="title class_">AddClass</span>(<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>访问三变量构造函数</li>
+<li>通过 <code>this(x,y)</code> 调用两变量构造函数</li>
+<li>同理，调用一变量构造函数</li>
+<li>给变量 <code>x</code> 赋值</li>
+<li>返回 两变量构造函数 给 <code>y</code> 赋值</li>
+<li>返回 三变量构造函数 给 <code>z</code> 赋值</li>
+</ol>
+</li>
+<li><p>实验：利用IDE的 <code>debug</code> 功能给P12，P13示例的 <code>new</code>语句设置断点，使用单步调试 <code>（step into/step over）</code>跟踪子类对象实例化（初始化）的执行顺序，并总结该过程。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//显式</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SonAddClass</span> <span class="keyword">extends</span> <span class="title class_">AddClass</span>&#123;</span><br><span class="line">    <span class="type">int</span> a=<span class="number">0</span>,b=<span class="number">0</span>,c=<span class="number">0</span>;</span><br><span class="line">    SonAddClass (<span class="type">int</span> x) &#123;<span class="built_in">super</span>(x);a=x+<span class="number">7</span>;&#125;</span><br><span class="line">    SonAddClass (<span class="type">int</span> x,<span class="type">int</span> y)&#123;<span class="built_in">super</span>(x,y);    a=x+<span class="number">5</span>;   b=y+<span class="number">5</span>;&#125;</span><br><span class="line">    SonAddClass (<span class="type">int</span> x, <span class="type">int</span> y,<span class="type">int</span> z)&#123; <span class="built_in">super</span>(x,y,z); a=x+<span class="number">4</span>; b=y+<span class="number">4</span>;c=z+<span class="number">4</span>; </span><br><span class="line">&#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span>&#123;</span><br><span class="line">        SonAddClass p1=<span class="keyword">new</span> <span class="title class_">SonAddClass</span> (<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>访问三变量子构造函数。</li>
+<li>通过 <code>super</code> 访问父类三变量构造函数。</li>
+<li>同上文顺序给父类三变量赋值</li>
+<li>返回子类构造函数，给子类变量赋值。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//隐式</span></span><br><span class="line"><span class="keyword">package</span> test;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Pare</span> &#123;</span><br><span class="line">    <span class="type">int</span> i=<span class="number">3</span>;</span><br><span class="line">    Pare()&#123; System.out.println(<span class="string">&quot;call super()&quot;</span>); &#125;&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Construct</span> <span class="keyword">extends</span> <span class="title class_">Pare</span>&#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line">    Construct()&#123;System.out.println(<span class="string">&quot;execute Construct()&quot;</span>); &#125;</span><br><span class="line">    Construct(<span class="type">int</span> num)&#123; <span class="built_in">this</span>(); <span class="comment">//如果注释掉该句呢？</span></span><br><span class="line">        System.out.println(<span class="string">&quot;execute Construct(int)&quot;</span>); &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span>&#123;</span><br><span class="line">        <span class="type">Construct</span> <span class="variable">ct</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Construct</span>(<span class="number">9</span>);</span><br><span class="line">        System.out.println(ct.i);&#125;&#125;</span><br><span class="line"><span class="comment">//注释前</span></span><br><span class="line">call <span class="title function_">super</span><span class="params">()</span></span><br><span class="line">execute <span class="title function_">Construct</span><span class="params">()</span></span><br><span class="line">execute <span class="title function_">Construct</span><span class="params">(<span class="type">int</span>)</span></span><br><span class="line"><span class="number">10</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//注释后</span></span><br><span class="line">call <span class="title function_">super</span><span class="params">()</span></span><br><span class="line">execute <span class="title function_">Construct</span><span class="params">(<span class="type">int</span>)</span></span><br><span class="line"><span class="number">10</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>分析P7示例的程序执行过程，画出程序执行的内存布局。(蒙的）</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> test;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">A</span> &#123;</span><br><span class="line">    <span class="type">int</span> x=<span class="number">4</span>;</span><br><span class="line">    <span class="type">int</span> y=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">Printme</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;x=&quot;</span>+x+<span class="string">&quot; y=&quot;</span>+y);</span><br><span class="line">        System.out.println(<span class="string">&quot;class name: &quot;</span>+getClass().getName());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AA</span> <span class="keyword">extends</span> <span class="title class_">A</span> &#123;</span><br><span class="line">    <span class="type">int</span> x;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">Printme</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">int</span> z=<span class="built_in">super</span>.x+<span class="number">6</span>;</span><br><span class="line">        <span class="built_in">super</span>.x = <span class="number">5</span>;</span><br><span class="line">        <span class="built_in">super</span>.Printme();</span><br><span class="line">        System.out.println(<span class="string">&quot;I am an &quot;</span>+getClass().getName());</span><br><span class="line">        x=<span class="number">6</span>;</span><br><span class="line">        System.out.println(<span class="string">&quot; z=&quot;</span>+z+<span class="string">&quot; x=&quot;</span>+x+<span class="string">&quot; super.x=&quot;</span>+<span class="built_in">super</span>.x +<span class="string">&quot; y=&quot;</span>+y+<span class="string">&quot;super.y=&quot;</span>+y);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String arg[])</span> &#123;</span><br><span class="line">        <span class="type">int</span> k;</span><br><span class="line">        A p1=<span class="keyword">new</span> <span class="title class_">A</span>();</span><br><span class="line">        AA p2=<span class="keyword">new</span> <span class="title class_">AA</span>();</span><br><span class="line">        p1.Printme();</span><br><span class="line">        p2.Printme();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="6.png"></p>
+</li>
+<li><p>总结 <code>this</code> 与 <code>super</code>的用法。</p>
+<ol>
+<li><code>this.</code> 调用本对象的属性或方法， <code>this()</code> 调用本对象的构造方法</li>
+<li><code>super.</code> 调用父对象的属性和方法， <code>super()</code> 调用父对象的构造方法</li>
+<li>两者都要放到第一句，所以不可同时使用。</li>
+</ol>
+</li>
+<li><p>论述组合与继承的区别以及两者的使用场景（即什么时候宜用组合？什么时候宜用继承？）</p>
+<ol>
+<li>都是代码的复用</li>
+<li>组合中，各类是独立的，继承中，子类缺乏独立性</li>
+<li>从一般到特殊选择继承</li>
+<li>作为工具类选择组合</li>
+</ol>
+</li>
+<li><p><code>Java</code>中的运行时多态的含义是什么？通常在什么场景下应用，请举例说明。</p>
+<ol>
+<li>多态含义：同一个类有多个对象，接收到同一个消息时，会有不同的结果</li>
+<li>运行时多态：使用父类引用，指向子类对象，再调用某一父类中的方法时，不同的子类会表现出不同的结果。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Figure</span> &#123;</span><br><span class="line">    <span class="type">double</span> dim1;</span><br><span class="line">    <span class="type">double</span> dim2;</span><br><span class="line">    Figure(<span class="type">double</span> d1, <span class="type">double</span> d2) &#123;</span><br><span class="line">        <span class="comment">// 有参的构造方法</span></span><br><span class="line">        <span class="built_in">this</span>.dim1 = d1;</span><br><span class="line">        <span class="built_in">this</span>.dim2 = d2;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">double</span> <span class="title function_">area</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 用于计算对象的面积</span></span><br><span class="line">        System.out.println(<span class="string">&quot;父类中计算对象面积的方法，没有实际意义，需要在子类中重写。&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Rectangle</span> <span class="keyword">extends</span> <span class="title class_">Figure</span> &#123;</span><br><span class="line">    Rectangle(<span class="type">double</span> d1, <span class="type">double</span> d2) &#123;</span><br><span class="line">        <span class="built_in">super</span>(d1, d2);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">double</span> <span class="title function_">area</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;长方形的面积：&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">super</span>.dim1 * <span class="built_in">super</span>.dim2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Triangle</span> <span class="keyword">extends</span> <span class="title class_">Figure</span> &#123;</span><br><span class="line">    Triangle(<span class="type">double</span> d1, <span class="type">double</span> d2) &#123;</span><br><span class="line">        <span class="built_in">super</span>(d1, d2);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">double</span> <span class="title function_">area</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;三角形的面积：&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">super</span>.dim1 * <span class="built_in">super</span>.dim2 / <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        Figure figure; <span class="comment">// 声明Figure类的变量</span></span><br><span class="line">        figure = <span class="keyword">new</span> <span class="title class_">Rectangle</span>(<span class="number">9</span>, <span class="number">9</span>);</span><br><span class="line">        System.out.println(figure.area());</span><br><span class="line">        System.out.println(<span class="string">&quot;===============================&quot;</span>);</span><br><span class="line">        figure = <span class="keyword">new</span> <span class="title class_">Triangle</span>(<span class="number">6</span>, <span class="number">8</span>);</span><br><span class="line">        System.out.println(figure.area());</span><br><span class="line">        System.out.println(<span class="string">&quot;===============================&quot;</span>);</span><br><span class="line">        figure = <span class="keyword">new</span> <span class="title class_">Figure</span>(<span class="number">10</span>, <span class="number">10</span>);</span><br><span class="line">        System.out.println(figure.area());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//figure 的对象都是其子类。向上转型，实现多态。</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用接口改写例6.8中的程序。</p>
+</li>
+<li><p>论述抽象类与接口的异同以及两者的使用场景。</p>
+<p><img src="7.png"></p>
+</li>
+<li><p>论述内部类的定义和作用以及匿名内部类的使用。</p>
+<ol>
+<li>定义：在类的内部定义类</li>
+<li>作用：可以访问外部类的成员，包括私有成员，使得该类具有其他类没有的特有功能。</li>
+</ol>
+</li>
 </ol>
 <h2 id="第-07-章-异常"><a href="#第-07-章-异常" class="headerlink" title="第 07 章  异常"></a>第 07 章  异常</h2><ol>
-<li><code>Throwable</code>的子类包含哪两类？简述 <code>Java Error</code>类与 <code>Exception</code>类的区别。</li>
-<li><code>Exception</code>又分为 <code>checked</code>异常和 <code>unchecked</code>异常，请分别举例说明。</li>
-<li>请查阅资料，简述 <code>StackOverflowError</code>和 <code>OutOfMemoryError</code>两类错误的发生情形和原因。</li>
-<li>简述异常处理的两种方式，并举例说明区别。</li>
-<li>选取 <code>RuntimeException</code> 类的五个子类，编写抛出并捕获上述子类异常的程序。（例如算术异常，空指针异常，类转换异常，数组越界异常等）</li>
-<li>根据某业务场景自定义一个异常类，并在某场景下抛出该异常对象。</li>
-<li>异常中的 <code>throws</code> 声明与 <code>throw</code>语句的区别是什么？请举例说明。</li>
-<li><code>finally</code>子句的作用是什么？</li>
+<li><p><code>Throwable</code>的子类包含哪两类？简述 <code>Error</code>类与 <code>Exception</code>类的区别。</p>
+<ol>
+<li>前者不可被捕获，后者可以被捕获</li>
+<li>前者不需要被抛出，后者需要用 <code>Expetion</code> 抛出异常</li>
+<li>前者会导致程序不能运行或中断，后者可以通过捕获抛出</li>
+</ol>
+</li>
+<li><p><code>Exception</code>又分为 <code>checked</code>异常和 <code>unchecked</code>异常，请分别举例说明。</p>
+<ol>
+<li><p>前者是在编译是需要检查的异常，需要用 <code>try - catch</code> 捕获，后者是不需要在编译时处理。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// checked</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">A</span>&#123;</span><br><span class="line">   <span class="keyword">public</span>  <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[]args)</span>&#123;</span><br><span class="line">       <span class="keyword">try</span>(Scanner sc=<span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in))&#123;</span><br><span class="line">           <span class="type">int</span> a=sc.nextShort();</span><br><span class="line">       &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">           e.printStackTrace();</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//unchecked</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">A</span>&#123;</span><br><span class="line">    <span class="keyword">public</span>  <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[]args)</span>&#123;</span><br><span class="line">        <span class="type">int</span> []a;</span><br><span class="line">        System.out.println(a[<span class="number">0</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p>请查阅资料，简述 <code>StackOverflowError</code>和 <code>OutOfMemoryError</code>两类错误的发生情形和原因。</p>
+<ol>
+<li>前者：递归次数太多、线程数量太多</li>
+<li>后者：内存不够发生了内存溢出</li>
+</ol>
+</li>
+<li><p>简述异常处理的两种方式，并举例说明区别。</p>
+<ol>
+<li><code>throw</code> 异常上抛，如果直接抛到了 <code>main</code> 就会结束程序</li>
+<li><code>try - catch</code> 异常捕获处理，调用者不会知道哪里出错了，因为在下面已经被捕获并且处理了。</li>
+</ol>
+</li>
+<li><p>选取 <code>RuntimeException</code> 类的五个子类，编写抛出并捕获上述子类异常的程序。（例如算术异常，空指针异常，类转换异常，数组越界异常等）</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Exception</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String args[])</span>&#123;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            <span class="type">int</span> a=<span class="number">1</span>/<span class="number">0</span>;</span><br><span class="line">        &#125;<span class="keyword">catch</span> (java.lang.Exception e)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;算术异常：&quot;</span>+e);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            <span class="type">int</span> []a = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">10</span>];</span><br><span class="line">            a[<span class="number">11</span>]=-<span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">catch</span> (java.lang.Exception e)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;数组越界异常：&quot;</span>+e);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            <span class="type">Scanner</span> <span class="variable">sc</span> <span class="operator">=</span> <span class="literal">null</span>;<span class="comment">//new Scanner(System.in);</span></span><br><span class="line">            sc.nextInt();</span><br><span class="line">        &#125;<span class="keyword">catch</span> (java.lang.Exception e)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;空指针异常：&quot;</span>+e);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            Stack&lt;Integer&gt; stack = <span class="keyword">new</span> <span class="title class_">Stack</span>&lt;&gt;();</span><br><span class="line">            stack.pop();</span><br><span class="line">        &#125;<span class="keyword">catch</span> (java.lang.Exception e)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;空栈异常：&quot;</span>+e);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            <span class="type">Object</span> <span class="variable">a</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Integer</span>(<span class="number">0</span>);</span><br><span class="line">            a=(String)a;</span><br><span class="line">        &#125;<span class="keyword">catch</span> (java.lang.Exception e)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;类转换异常：&quot;</span>+e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>根据某业务场景自定义一个异常类，并在某场景下抛出该异常对象。</p>
+<p>关于自定义异常类：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SelfException</span> <span class="keyword">extends</span> <span class="title class_">java</span>.lang.Exception &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">SelfException</span><span class="params">()</span>&#123;&#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">SelfException</span><span class="params">(String s)</span>&#123;</span><br><span class="line">        <span class="built_in">super</span>(s);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String args[])</span> <span class="keyword">throws</span> SelfException &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(a == <span class="number">1</span>)&#123;</span><br><span class="line">             <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">SelfException</span>(<span class="string">&quot;a=1&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>异常中的 <code>throws</code> 声明与 <code>throw</code>语句的区别是什么？请举例说明。 1.</p>
+</li>
+<li><p><code>finally</code>子句的作用是什么？</p>
+</li>
 </ol>
 <h2 id="第-08-章-字符串"><a href="#第-08-章-字符串" class="headerlink" title="第 08 章  字符串"></a>第 08 章  字符串</h2><ol>
 <li><p>借助 <code>JDK</code>文档, 选取 <code>String</code> 与 <code>StringBuffer</code> 、 <code>StringBuilder</code> 的常用 <code>API</code>，并编写实例测试 <code>API</code>的功能。</p>
@@ -243,30 +482,68 @@
 </ol>
 </li>
 <li><p><code>FutureTask</code> 类有什么作用？它实现了哪些接口？</p>
-<p><code>Callable</code> 接口和 <code>Runnable</code> 接口有什么不同？（选做）</p>
-</li>
-<li><p>请查阅JDK自学线程池的相关类，如 <code>ThreadPoolExecutor</code> 构造器各个参数的意义， 利用线程池编写多线程程序。（选做）</p>
 </li>
 <li><p><code>volatile</code> 关键字有什么作用？</p>
+<ol>
+<li>保证程序的可见性和有序性（不能保证原子性）</li>
+</ol>
 </li>
 <li><p><code>Java</code>提供了哪些同步机制来实现互斥？</p>
+<ol>
+<li><code>synchronized</code></li>
+<li><code>ReentrantLock</code></li>
+</ol>
 </li>
 <li><p>编写 <code>Java</code>程序模拟烧水泡茶最优工序。</p>
-</li>
-<li><p>编写一个多线程 <code>Java</code>应用模拟生产者&#x2F;消费者模型，各产生10个生产者和消费者线程，共享一</p>
-<p>缓冲区队列（长度自设），生产者线程将产品放入到缓冲区，消费者线程从缓冲区取出产品。（选做）</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> Acwing;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">WashKettle</span> <span class="keyword">implements</span> <span class="title class_">Runnable</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;开始洗水壶&quot;</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(e);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;水壶洗完了&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">HeatWater</span> <span class="keyword">implements</span> <span class="title class_">Runnable</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;开始烧水&quot;</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">10000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(e);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;水烧完了&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">WashCup</span> <span class="keyword">implements</span> <span class="title class_">Runnable</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;开始洗茶杯&quot;</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(e);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;茶杯洗完了&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">GetTea</span> <span class="keyword">implements</span> <span class="title class_">Runnable</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;开始拿茶叶&quot;</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(e);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;茶叶拿完了&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Finish</span> <span class="keyword">implements</span> <span class="title class_">Runnable</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;开始泡茶&quot;</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(e);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;茶泡完了&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Tea</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String args[])</span> <span class="keyword">throws</span> InterruptedException &#123;</span><br><span class="line">        <span class="type">Thread</span> <span class="variable">t1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(<span class="keyword">new</span> <span class="title class_">WashKettle</span>());</span><br><span class="line">        <span class="type">Thread</span> <span class="variable">t2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(<span class="keyword">new</span> <span class="title class_">HeatWater</span>());</span><br><span class="line">        <span class="type">Thread</span> <span class="variable">t3</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(<span class="keyword">new</span> <span class="title class_">WashCup</span>());</span><br><span class="line">        <span class="type">Thread</span> <span class="variable">t4</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(<span class="keyword">new</span> <span class="title class_">GetTea</span>());</span><br><span class="line">        <span class="type">Thread</span> <span class="variable">t5</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(<span class="keyword">new</span> <span class="title class_">Finish</span>());</span><br><span class="line">        t1.start();</span><br><span class="line">        t1.join();</span><br><span class="line"></span><br><span class="line">        t2.start();</span><br><span class="line"></span><br><span class="line">        t3.start();</span><br><span class="line">        t3.join();</span><br><span class="line"></span><br><span class="line">        t4.start();</span><br><span class="line">        t4.join();</span><br><span class="line"></span><br><span class="line">        t2.join();</span><br><span class="line">        t5.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">开始洗水壶</span></span><br><span class="line"><span class="comment">水壶洗完了</span></span><br><span class="line"><span class="comment">开始烧水</span></span><br><span class="line"><span class="comment">开始洗茶杯</span></span><br><span class="line"><span class="comment">茶杯洗完了</span></span><br><span class="line"><span class="comment">开始拿茶叶</span></span><br><span class="line"><span class="comment">茶叶拿完了</span></span><br><span class="line"><span class="comment">水烧完了</span></span><br><span class="line"><span class="comment">开始泡茶</span></span><br><span class="line"><span class="comment">茶泡完了</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>阅读公众号“码农翻身”的文章—《我是一个线程》。</p>
 </li>
 </ol>
 <h2 id="第-10-章-JavaIO"><a href="#第-10-章-JavaIO" class="headerlink" title="第 10 章  JavaIO"></a>第 10 章  JavaIO</h2><ol>
-<li><code>Java</code>中流的分类有哪些？</li>
-<li>字节流 <code>InputStream</code>和 <code>OutputStream</code>的子类分别有哪些？请编程举例说明其使用场景。与其对应的字符流分别有哪些？</li>
-<li>字节流与字符流的转化是怎样的？ <code>Java</code>对此提供了哪些支持？</li>
-<li><code>Java</code>中的过滤流（流的装配）有什么作用？请编程举例说明常用的过滤流。</li>
-<li>什么是对象的序列化和反序列化？ <code>Java</code> 对此提供了哪些支持？对象序列化用于什么情形？请编程相关示例。</li>
-<li><code>Java</code>的 <code>File</code>类表示什么？有什么作用？</li>
-<li><code>Java</code>对文件的读写分别提供了哪些支持？</li>
+<li><p><code>Java</code>中流的分类有哪些？</p>
+<ol>
+<li>输入流、输出流</li>
+<li>字节流、字符流</li>
+<li>节点流、过滤流</li>
+</ol>
+</li>
+<li><p>字节流 <code>InputStream</code>和 <code>OutputStream</code>的子类分别有哪些？请编程举例说明其使用场景。与其对应的字符流分别有哪些？</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException, ClassNotFoundException &#123;</span><br><span class="line">        <span class="type">byte</span>[] b = <span class="string">&quot;hello&quot;</span>.getBytes();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//ByteArrayInputStream</span></span><br><span class="line">        <span class="comment">//字节数组和流之间的桥梁</span></span><br><span class="line">        <span class="type">ByteArrayInputStream</span> <span class="variable">bais</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ByteArrayInputStream</span>(b);</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>((n = bais.read())!=-<span class="number">1</span>)&#123;</span><br><span class="line">            System.out.print((<span class="type">char</span>)n);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//FileInputStream</span></span><br><span class="line">        <span class="comment">//文件和流之间的桥梁</span></span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            <span class="type">FileInputStream</span> <span class="variable">rf</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;C:\\\\Users\\\\JMhhh\\\\Desktop\\\\hello.txt&quot;</span>);</span><br><span class="line">            <span class="type">int</span> <span class="variable">n2</span> <span class="operator">=</span> <span class="number">512</span>,c = <span class="number">0</span>;</span><br><span class="line">            <span class="type">byte</span>[] b2 =<span class="keyword">new</span> <span class="title class_">byte</span>[n2];</span><br><span class="line">            <span class="keyword">while</span>((c = rf.read(b2,<span class="number">0</span>,n2))!=-<span class="number">1</span>)&#123;</span><br><span class="line">                <span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(b2,<span class="number">0</span>,c);</span><br><span class="line">                System.out.println(s);</span><br><span class="line">            &#125;</span><br><span class="line">            rf.close();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(e);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(e);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//PipedInputStream</span></span><br><span class="line">        <span class="comment">//一个程序的输出连接到另一个的输入</span></span><br><span class="line">        <span class="type">PipedInputStream</span> <span class="variable">in</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">PipedInputStream</span>();</span><br><span class="line">        <span class="type">PipedOutputStream</span> <span class="variable">out</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">PipedOutputStream</span>();</span><br><span class="line">        in.connect(out);</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">Thread</span>(<span class="keyword">new</span> <span class="title class_">Input</span>(in)).start();</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">Thread</span>(<span class="keyword">new</span> <span class="title class_">Output</span>(out)).start();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//ObjectInputStream</span></span><br><span class="line">        <span class="comment">//对象的序列化传输——恢复</span></span><br><span class="line">        <span class="type">people</span> <span class="variable">p1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">people</span>(<span class="string">&quot;sda&quot;</span>,<span class="number">10</span>);</span><br><span class="line">        <span class="type">ObjectOutputStream</span> <span class="variable">oout</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectOutputStream</span>(<span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(<span class="string">&quot;C:\\\\Users\\\\JMhhh\\\\Desktop\\\\hello.txt&quot;</span>));</span><br><span class="line">        oout.writeObject(p1);</span><br><span class="line">        <span class="type">ObjectInputStream</span> <span class="variable">oin</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectInputStream</span>(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;C:\\\\Users\\\\JMhhh\\\\Desktop\\\\hello.txt&quot;</span>));</span><br><span class="line">        <span class="type">people</span> <span class="variable">O</span> <span class="operator">=</span> (people) oin.readObject();</span><br><span class="line">        System.out.println(O.name);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">people</span> <span class="keyword">implements</span> <span class="title class_">Serializable</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> old;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">people</span> <span class="params">(String name,<span class="type">int</span> old)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">        <span class="built_in">this</span>.old = old;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>字节流与字符流的转化是怎样的？ <code>Java</code>对此提供了哪些支持？</p>
+<ol>
+<li>提供了<code>InputStreamReader</code>  类和 <code>OutputStreamWriter</code>类为字节流和字符流之间实现相互转换。</li>
+<li>前者将字节流解码成字符，后者将字符转成字节写入流</li>
+</ol>
+</li>
+<li><p><code>Java</code>中的过滤流（流的装配）有什么作用？请编程举例说明常用的过滤流。</p>
+<ol>
+<li><p>功能：</p>
+<ol>
+<li><p>可从字节流中写入，读取Java基本数据类型，不依赖机器的具体数据类型，方便存储和恢复数据</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">DataOutputStream</span> <span class="variable">dos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DataOutputStream</span>(<span class="keyword">new</span> <span class="title class_">BufferedOutputStream</span>(<span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(<span class="string">&quot;C:\\Users\\JMhhh\\Desktop\\hello.txt&quot;</span>)));</span><br><span class="line">        dos.writeInt(<span class="number">3</span>);</span><br><span class="line">        dos.writeUTF(<span class="string">&quot;sda&quot;</span>);</span><br><span class="line">        dos.writeDouble(<span class="number">3.14</span>);</span><br><span class="line">        dos.close();</span><br><span class="line"></span><br><span class="line">        <span class="type">DataInputStream</span> <span class="variable">dis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DataInputStream</span>(<span class="keyword">new</span> <span class="title class_">BufferedInputStream</span>(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;C:\\Users\\JMhhh\\Desktop\\hello.txt&quot;</span>)));</span><br><span class="line">        System.out.println(dis.readInt());</span><br><span class="line">        System.out.println(dis.readUTF());</span><br><span class="line">        System.out.println(dis.readDouble());</span><br><span class="line">        dis.close();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用于缓存字符流，可以一行一行的读</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">BufferedReader</span> <span class="variable">bin</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedReader</span>(<span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(System.in));</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">3</span>;i++)&#123;</span><br><span class="line">            <span class="type">String</span>  <span class="variable">s</span> <span class="operator">=</span> bin.readLine();</span><br><span class="line">            System.out.println(s);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>什么是对象的序列化和反序列化？ <code>Java</code> 对此提供了哪些支持？对象序列化用于什么情形？请编程相关示例。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">        <span class="type">people</span> <span class="variable">p1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">people</span>(<span class="string">&quot;sda&quot;</span>,<span class="number">10</span>);</span><br><span class="line">        <span class="type">ObjectOutputStream</span> <span class="variable">oout</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectOutputStream</span>(<span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(<span class="string">&quot;C:\\Users\\JMhhh\\Desktop\\hello.txt&quot;</span>));</span><br><span class="line">        oout.writeObject(p1);</span><br><span class="line">        <span class="type">ObjectInputStream</span> <span class="variable">oin</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectInputStream</span>(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;C:\\Users\\JMhhh\\Desktop\\hello.txt&quot;</span>));</span><br><span class="line">        <span class="type">people</span> <span class="variable">O</span> <span class="operator">=</span> (people) oin.readObject();</span><br><span class="line">        System.out.println(O.name);</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">people</span> <span class="keyword">implements</span> <span class="title class_">Serializable</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> old;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">people</span> <span class="params">(String name,<span class="type">int</span> old)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">        <span class="built_in">this</span>.old = old;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>Java</code>的 <code>File</code>类表示什么？有什么作用？</p>
+<ol>
+<li>访问文件和目录，文件属性等</li>
+</ol>
+<p><img src="8.png"></p>
+</li>
+<li><p><code>Java</code>对文件的读写分别提供了哪些支持？</p>
+<ol>
+<li>文件输入输出流的类</li>
+</ol>
+</li>
 </ol>
 <h2 id="第-11-章-网络编程"><a href="#第-11-章-网络编程" class="headerlink" title="第 11 章  网络编程"></a>第 11 章  网络编程</h2><ol>
 <li>基于 <code>TCP Socket</code> 的 <code>C/S</code>通信与基于 <code>UDP</code>数据报的 <code>C/S</code> 通信有哪些区别？ <code>Java</code>分别提供了哪些支持</li>
