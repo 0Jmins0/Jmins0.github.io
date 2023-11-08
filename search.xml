@@ -1626,17 +1626,9 @@
       </tags>
   </entry>
   <entry>
-    <title></title>
+    <title>JAVA课程设计报告聊天室系统</title>
     <url>/Jmins0.github.io/2023/11/08/java_%E8%81%8A%E5%A4%A9%E5%AE%A4/</url>
-    <content><![CDATA[<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">title:  &quot;JAVA课程设计报告聊天室系统&quot;</span><br><span class="line">categories: </span><br><span class="line">- learn</span><br><span class="line">tags: </span><br><span class="line">- Java</span><br><span class="line">- course</span><br><span class="line">- report</span><br><span class="line">mathjax: true</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-<h1 id="一、课程设计要求与目的"><a href="#一、课程设计要求与目的" class="headerlink" title="一、课程设计要求与目的"></a>一、课程设计要求与目的</h1><p>目的：编写一个局域网Java聊天室系统，掌握Java网络通信、多线程、IO文件操作等高级应用编程技能。</p>
+    <content><![CDATA[<h1 id="一、课程设计要求与目的"><a href="#一、课程设计要求与目的" class="headerlink" title="一、课程设计要求与目的"></a>一、课程设计要求与目的</h1><p>目的：编写一个局域网Java聊天室系统，掌握Java网络通信、多线程、IO文件操作等高级应用编程技能。</p>
 <p>要求：以课堂所给示例为基础，编写一个小型Java聊天室系统。</p>
 <p>完成如下功能：</p>
 <ol>
@@ -1651,10 +1643,7 @@
 </ol>
 <span id="more"></span>
 
-<h1 id="二、系统设计与实现"><a href="#二、系统设计与实现" class="headerlink" title="二、系统设计与实现"></a>二、系统设计与实现</h1><ol>
-<li><img src="001.jpg" alt="img"></li>
-</ol>
-<p><img src="002.jpg" alt="img"></p>
+<h1 id="二、系统设计与实现"><a href="#二、系统设计与实现" class="headerlink" title="二、系统设计与实现"></a>二、系统设计与实现</h1><p>1. </p>
 <p><img src="003.jpg" alt="img"></p>
 <p>设计原理与思想（Socket套接字通信原理，系统设计思想)</p>
 <p> <img src="004.jpg" alt="img"></p>
@@ -1765,5 +1754,13 @@
 <p>b.对java的知识，尤其是socket 网络编程，十分熟悉了，虽然最终的呈现里，没有完完全全用java写socket，但是在项目的最一开始，反复写了很多遍简易版的Server和Center ，经反复实践，发现确实不能通过这个方式放到Springboot里，才更换思路，但是此时已经对socket理解更进一层了，为后面用别的工具写socket提供了帮助。</p>
 <p>c.这个项目真的写了很久，也真的收获了太多，不仅仅是Java的知识，而是打开了一扇新世界的大门，作为自己的第一个项目，希望日后可以慢慢完善，当做自己学习前后端知识的log吧。</p>
 ]]></content>
+      <categories>
+        <category>learn</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>course</tag>
+        <tag>report</tag>
+      </tags>
   </entry>
 </search>
