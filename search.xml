@@ -1628,7 +1628,13 @@
   <entry>
     <title>JAVA课程设计报告聊天室系统</title>
     <url>/Jmins0.github.io/2023/11/08/java_%E8%81%8A%E5%A4%A9%E5%AE%A4/</url>
-    <content><![CDATA[<h1 id="一、课程设计要求与目的"><a href="#一、课程设计要求与目的" class="headerlink" title="一、课程设计要求与目的"></a>一、课程设计要求与目的</h1><p>目的：编写一个局域网Java聊天室系统，掌握Java网络通信、多线程、IO文件操作等高级应用编程技能。</p>
+    <content><![CDATA[<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">项目 Guihub仓库链接 ： https://github.com/0Jmins0/chatroom</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="一、课程设计要求与目的"><a href="#一、课程设计要求与目的" class="headerlink" title="一、课程设计要求与目的"></a>一、课程设计要求与目的</h1><p>目的：编写一个局域网Java聊天室系统，掌握Java网络通信、多线程、IO文件操作等高级应用编程技能。</p>
 <p>要求：以课堂所给示例为基础，编写一个小型Java聊天室系统。</p>
 <p>完成如下功能：</p>
 <ol>
